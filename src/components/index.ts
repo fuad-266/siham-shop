@@ -3,3 +3,4 @@ export { ProductCard } from './ProductCard';
 export { ProductCatalog } from './ProductCatalog';
 export { FilterPanel } from './FilterPanel';
 export { SearchBar } from './SearchBar';
+export { ImageGallery } from './ImageGallery';
