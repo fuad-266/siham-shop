@@ -7,6 +7,7 @@ interface ProductCatalogProps {
   products: Product[];
   selectedCategory?: string;
   onCategoryChange: (category: string) => void;
+  resultCount?: number;
 }
 
 /**
@@ -25,6 +26,7 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
   products,
   selectedCategory,
   onCategoryChange,
+  resultCount,
 }) => {
   const [visibleProducts, setVisibleProducts] = useState<Set<string>>(new Set());
   const observerRef = useRef<IntersectionObserver | null>(null);
@@ -111,7 +113,7 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
 
       {/* Product Count */}
       <div className="product-catalog__count" aria-live="polite">
-        {filteredProducts.length} {filteredProducts.length === 1 ? 'product' : 'products'} found
+        {resultCount !== undefined ? resultCount : filteredProducts.length} {(resultCount !== undefined ? resultCount : filteredProducts.length) === 1 ? 'product' : 'products'} found
       </div>
 
       {/* Product Grid */}
