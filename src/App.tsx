@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { ProductCatalog, FilterPanel } from './components';
+import { ProductCatalog, FilterPanel, SearchBar } from './components';
 import { products } from './data/products';
 import { FilterOptions } from './types/models';
 import { useProductFilter } from './hooks/useProductFilter';
@@ -18,10 +18,20 @@ function App() {
     }));
   };
 
+  const handleSearch = (query: string) => {
+    setFilters((prev) => ({
+      ...prev,
+      searchQuery: query,
+    }));
+  };
+
   return (
     <Router>
       <div className="app" style={{ padding: '2rem' }}>
-        <h1 style={{ marginBottom: '2rem' }}>Alora Abayas</h1>
+        <header style={{ marginBottom: '2rem' }}>
+          <h1 style={{ marginBottom: '1rem' }}>Alora Abayas</h1>
+          <SearchBar onSearch={handleSearch} />
+        </header>
         <div style={{ display: 'flex', gap: '2rem', alignItems: 'flex-start' }}>
           <div style={{ width: '300px', flexShrink: 0 }}>
             <FilterPanel

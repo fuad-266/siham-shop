@@ -71,15 +71,6 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
     }
   };
 
-  const handleCategoryClick = (category: string) => {
-    onCategoryChange(category);
-  };
-
-  const handleProductClick = (productId: string) => {
-    // This will be handled by parent component or router
-    console.log('Product clicked:', productId);
-  };
-
   return (
     <div className="product-catalog">
       {/* Product Count */}
