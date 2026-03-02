@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor, within } from '@testing-library/react';
 import App from './App';
 
 describe('App', () => {
@@ -16,8 +16,9 @@ describe('App', () => {
       const initialCount = screen.getByText(/products? found/i);
       expect(initialCount).toBeInTheDocument();
       
-      // Click on casual category filter
-      const casualButton = screen.getByRole('button', { name: /filter by casual category/i });
+      // Click on casual category filter in the FilterPanel (within the "Product filters" region)
+      const filterPanel = screen.getByRole('region', { name: /product filters/i });
+      const casualButton = within(filterPanel).getByRole('button', { name: /filter by casual category/i });
       fireEvent.click(casualButton);
       
       // Wait for the filter to be applied and count to update
@@ -58,8 +59,9 @@ describe('App', () => {
     it('shows correct count when multiple filters are applied', async () => {
       render(<App />);
       
-      // Apply category filter
-      const casualButton = screen.getByRole('button', { name: /filter by casual category/i });
+      // Apply category filter in the FilterPanel
+      const filterPanel = screen.getByRole('region', { name: /product filters/i });
+      const casualButton = within(filterPanel).getByRole('button', { name: /filter by casual category/i });
       fireEvent.click(casualButton);
       
       // Apply size filter
@@ -76,8 +78,9 @@ describe('App', () => {
     it('clears all filters when Clear All button is clicked', async () => {
       render(<App />);
       
-      // Apply a filter first
-      const casualButton = screen.getByRole('button', { name: /filter by casual category/i });
+      // Apply a filter first in the FilterPanel
+      const filterPanel = screen.getByRole('region', { name: /product filters/i });
+      const casualButton = within(filterPanel).getByRole('button', { name: /filter by casual category/i });
       fireEvent.click(casualButton);
       
       // Wait for filter to be applied
