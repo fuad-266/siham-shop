@@ -143,8 +143,8 @@ describe('ZoomAnimation', () => {
       fc.assert(
         fc.property(
           fc.constantFrom('hover', 'click', 'inView'),
-          fc.float({ min: 1.0, max: 2.0 }),
-          fc.float({ min: 0.1, max: 1.0 }),
+          fc.float({ min: Math.fround(1.0), max: Math.fround(2.0) }),
+          fc.float({ min: Math.fround(0.1), max: Math.fround(1.0) }),
           (trigger, scale, duration) => {
             const { container } = render(
               <ZoomAnimation trigger={trigger} scale={scale} duration={duration}>
@@ -181,7 +181,7 @@ describe('ZoomAnimation', () => {
       fc.assert(
         fc.property(
           fc.constantFrom('hover', 'click', 'inView'),
-          fc.float({ min: 0.1, max: 5.0 }), // Test with durations up to 5s
+          fc.float({ min: Math.fround(0.1), max: Math.fround(5.0) }), // Test with durations up to 5s
           (trigger, duration) => {
             render(
               <ZoomAnimation trigger={trigger} duration={duration}>
@@ -212,7 +212,7 @@ describe('ZoomAnimation', () => {
       fc.assert(
         fc.property(
           fc.constantFrom('hover', 'click', 'inView'),
-          fc.float({ min: 1.0, max: 2.0 }),
+          fc.float({ min: Math.fround(1.0), max: Math.fround(2.0) }),
           fc.boolean(), // Whether reduced motion is preferred
           (trigger, scale, reducedMotion) => {
             // Mock matchMedia based on reducedMotion preference
@@ -248,8 +248,8 @@ describe('ZoomAnimation', () => {
       fc.assert(
         fc.property(
           fc.constantFrom('hover', 'click', 'inView'),
-          fc.float({ min: 1.0, max: 2.0 }),
-          fc.float({ min: 0.1, max: 1.0 }),
+          fc.float({ min: Math.fround(1.0), max: Math.fround(2.0) }),
+          fc.float({ min: Math.fround(0.1), max: Math.fround(1.0) }),
           fc.string({ minLength: 1, maxLength: 50 }),
           (trigger, scale, duration, content) => {
             render(
