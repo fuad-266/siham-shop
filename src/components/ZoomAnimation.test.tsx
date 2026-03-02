@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen, cleanup } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ZoomAnimation } from './ZoomAnimation';
 import fc from 'fast-check';
@@ -164,6 +164,9 @@ describe('ZoomAnimation', () => {
             if (trigger === 'click') {
               expect(parent).toHaveStyle({ cursor: 'pointer' });
             }
+            
+            // Cleanup after each iteration
+            cleanup();
           }
         ),
         { numRuns: 100 }
@@ -195,6 +198,9 @@ describe('ZoomAnimation', () => {
             // The component should internally constrain duration to 0.5s
             // This is validated by the component's implementation
             // The actual duration used is Math.min(duration, 0.5)
+            
+            // Cleanup after each iteration
+            cleanup();
           }
         ),
         { numRuns: 100 }
@@ -238,6 +244,9 @@ describe('ZoomAnimation', () => {
             
             // Component should render regardless of reduced motion preference
             // When reduced motion is preferred, scale should be 1 and duration 0
+            
+            // Cleanup after each iteration
+            cleanup();
           }
         ),
         { numRuns: 100 }
@@ -261,6 +270,9 @@ describe('ZoomAnimation', () => {
             const element = screen.getByTestId('content-test');
             expect(element).toBeInTheDocument();
             expect(element.textContent).toBe(content);
+            
+            // Cleanup after each iteration
+            cleanup();
           }
         ),
         { numRuns: 100 }
