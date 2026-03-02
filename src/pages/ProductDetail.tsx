@@ -3,6 +3,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { getProductById } from '../data/products';
 import { ImageGallery } from '../components/ImageGallery';
 import { ZoomAnimation } from '../components/ZoomAnimation';
+import { CartNotification } from '../components/CartNotification';
+import { useCart } from '../hooks/useCart';
 import './ProductDetail.css';
 
 /**
@@ -15,11 +17,12 @@ import './ProductDetail.css';
 const ProductDetail = () => {
     const { id } = useParams<{ id: string }>();
     const navigate = useNavigate();
+    const { addItem } = useCart();
     const product = id ? getProductById(id) : undefined;
 
     const [selectedSize, setSelectedSize] = useState('');
     const [selectedColor, setSelectedColor] = useState('');
-    const [addedToCart, setAddedToCart] = useState(false);
+    const [showNotification, setShowNotification] = useState(false);
 
     if (!product) {
         return (
@@ -37,10 +40,8 @@ const ProductDetail = () => {
 
     const handleAddToCart = () => {
         if (!selectedSize || !selectedColor) return;
-        // Future: add to cart context
-        console.log('Add to cart:', { product: product.id, size: selectedSize, color: selectedColor });
-        setAddedToCart(true);
-        setTimeout(() => setAddedToCart(false), 3000);
+        addItem(product, selectedSize, selectedColor);
+        setShowNotification(true);
     };
 
     return (
@@ -107,7 +108,7 @@ const ProductDetail = () => {
                             disabled={!selectedSize || !selectedColor}
                             aria-label={`Add ${product.name} to cart`}
                         >
-                            {addedToCart ? '✓ Added to Cart' : 'Add to Cart'}
+                            {showNotification ? '✓ Added to Cart' : 'Add to Cart'}
                         </button>
                     </ZoomAnimation>
                     {(!selectedSize || !selectedColor) && (
@@ -132,6 +133,13 @@ const ProductDetail = () => {
                     </div>
                 </div>
             </div>
+
+            {/* Cart Notification */}
+            <CartNotification
+                message={`${product.name} added to cart!`}
+                isVisible={showNotification}
+                onClose={() => setShowNotification(false)}
+            />
         </div>
     );
 };

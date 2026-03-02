@@ -1,0 +1,86 @@
+.cart-notification {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: #2d2d2d;
+    color: #fff;
+    padding: 1rem 1.25rem;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+    animation: cartSlideUp 0.35s ease;
+    min-width: 280px;
+}
+
+@keyframes cartSlideUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.cart-notification__icon {
+    font-size: 1.2rem;
+    color: #4caf50;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.cart-notification__body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.cart-notification__message {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.cart-notification__view-cart {
+    background: none;
+    border: none;
+    color: #8ecfff;
+    font-size: 0.8rem;
+    cursor: pointer;
+    padding: 0;
+    text-align: left;
+    font-weight: 600;
+}
+
+.cart-notification__view-cart:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.cart-notification__close {
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 1.4rem;
+    cursor: pointer;
+    padding: 0 0.25rem;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.cart-notification__close:hover {
+    color: #fff;
+}
+
+@media (max-width: 480px) {
+    .cart-notification {
+        left: 1rem;
+        right: 1rem;
+        bottom: 1rem;
+    }
+}
