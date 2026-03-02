@@ -78,9 +78,11 @@ Alora Abayas is an immersive e-commerce website for selling abayas (traditional 
 3. THE System SHALL validate all required shipping information fields before allowing payment
 4. WHEN shipping information is invalid, THE System SHALL display clear error messages indicating which fields need correction
 5. THE System SHALL display an order summary showing all products, quantities, subtotal, shipping cost, and total amount
-6. THE System SHALL integrate with a payment gateway to process credit card or digital wallet payments
-7. WHEN payment is successful, THE System SHALL display an order confirmation page with order number and estimated delivery date
-8. WHEN payment fails, THE System SHALL display an error message and allow the user to retry payment
+6. THE System SHALL provide bank account details and Telebirr payment information for direct transfer
+7. THE System SHALL require users to upload a screenshot of their payment confirmation
+8. WHEN a user uploads a payment screenshot, THE System SHALL store it with the order for verification
+9. WHEN the order is submitted with payment screenshot, THE System SHALL display an order confirmation page with order number and pending verification status
+10. THE System SHALL display estimated delivery date information noting that delivery begins after payment verification
 
 ### Requirement 6: Responsive Design
 
