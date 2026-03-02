@@ -19,14 +19,14 @@ This implementation plan breaks down the Alora Abayas e-commerce website into di
     - Create types/models.ts with all data model interfaces
     - _Requirements: 1.1, 1.2, 4.1, 5.2_
   
-  - [-] 2.2 Create mock product data for abayas
+  - [x] 2.2 Create mock product data for abayas
     - Create data/products.ts with at least 20 sample abaya products
     - Include varied categories (casual, formal, embroidered, plain)
     - Include multiple images, sizes, colors for each product
     - _Requirements: 1.1, 1.4_
 
 - [ ] 3. Implement core animation system
-  - [~] 3.1 Create ZoomAnimation wrapper component
+  - [-] 3.1 Create ZoomAnimation wrapper component
     - Implement using Framer Motion with configurable trigger modes (hover, click, inView)
     - Add prefers-reduced-motion media query support
     - _Requirements: 2.1, 2.2, 2.3, 9.4_
