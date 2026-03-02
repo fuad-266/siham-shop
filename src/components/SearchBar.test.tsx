@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { SearchBar } from './SearchBar';
 
 describe('SearchBar Component', () => {
@@ -59,7 +59,7 @@ describe('SearchBar Component', () => {
   });
 
   describe('Debounced Search', () => {
-    it('should debounce search input with default delay (300ms)', async () => {
+    it('should debounce search input with default delay (300ms)', () => {
       const mockOnSearch = vi.fn();
       render(<SearchBar onSearch={mockOnSearch} />);
 
@@ -77,13 +77,11 @@ describe('SearchBar Component', () => {
       vi.advanceTimersByTime(300);
 
       // Should call onSearch once with final value
-      await waitFor(() => {
-        expect(mockOnSearch).toHaveBeenCalledTimes(1);
-        expect(mockOnSearch).toHaveBeenCalledWith('aba');
-      });
+      expect(mockOnSearch).toHaveBeenCalledTimes(1);
+      expect(mockOnSearch).toHaveBeenCalledWith('aba');
     });
 
-    it('should debounce search input with custom delay', async () => {
+    it('should debounce search input with custom delay', () => {
       const mockOnSearch = vi.fn();
       render(<SearchBar onSearch={mockOnSearch} debounceMs={500} />);
 
@@ -96,13 +94,11 @@ describe('SearchBar Component', () => {
 
       // Should call after 500ms
       vi.advanceTimersByTime(200);
-      await waitFor(() => {
-        expect(mockOnSearch).toHaveBeenCalledTimes(1);
-        expect(mockOnSearch).toHaveBeenCalledWith('test');
-      });
+      expect(mockOnSearch).toHaveBeenCalledTimes(1);
+      expect(mockOnSearch).toHaveBeenCalledWith('test');
     });
 
-    it('should reset debounce timer on each keystroke', async () => {
+    it('should reset debounce timer on each keystroke', () => {
       const mockOnSearch = vi.fn();
       render(<SearchBar onSearch={mockOnSearch} />);
 
@@ -125,10 +121,8 @@ describe('SearchBar Component', () => {
       // Complete the debounce
       vi.advanceTimersByTime(300);
 
-      await waitFor(() => {
-        expect(mockOnSearch).toHaveBeenCalledTimes(1);
-        expect(mockOnSearch).toHaveBeenCalledWith('aba');
-      });
+      expect(mockOnSearch).toHaveBeenCalledTimes(1);
+      expect(mockOnSearch).toHaveBeenCalledWith('aba');
     });
   });
 
@@ -174,7 +168,7 @@ describe('SearchBar Component', () => {
   });
 
   describe('Form Submission', () => {
-    it('should trigger immediate search on form submit', async () => {
+    it('should trigger immediate search on form submit', () => {
       const mockOnSearch = vi.fn();
       render(<SearchBar onSearch={mockOnSearch} />);
 
@@ -185,9 +179,7 @@ describe('SearchBar Component', () => {
       fireEvent.submit(form);
 
       // Should call immediately without waiting for debounce
-      await waitFor(() => {
-        expect(mockOnSearch).toHaveBeenCalledWith('abaya');
-      });
+      expect(mockOnSearch).toHaveBeenCalledWith('abaya');
     });
 
     it('should prevent default form submission', () => {
@@ -265,7 +257,7 @@ describe('SearchBar Component', () => {
   });
 
   describe('Edge Cases', () => {
-    it('should handle empty string input', async () => {
+    it('should handle empty string input', () => {
       const mockOnSearch = vi.fn();
       render(<SearchBar onSearch={mockOnSearch} />);
 
@@ -274,12 +266,10 @@ describe('SearchBar Component', () => {
 
       vi.advanceTimersByTime(300);
 
-      await waitFor(() => {
-        expect(mockOnSearch).toHaveBeenCalledWith('');
-      });
+      expect(mockOnSearch).toHaveBeenCalledWith('');
     });
 
-    it('should handle whitespace-only input', async () => {
+    it('should handle whitespace-only input', () => {
       const mockOnSearch = vi.fn();
       render(<SearchBar onSearch={mockOnSearch} />);
 
@@ -288,12 +278,10 @@ describe('SearchBar Component', () => {
 
       vi.advanceTimersByTime(300);
 
-      await waitFor(() => {
-        expect(mockOnSearch).toHaveBeenCalledWith('   ');
-      });
+      expect(mockOnSearch).toHaveBeenCalledWith('   ');
     });
 
-    it('should handle special characters', async () => {
+    it('should handle special characters', () => {
       const mockOnSearch = vi.fn();
       render(<SearchBar onSearch={mockOnSearch} />);
 
@@ -303,12 +291,10 @@ describe('SearchBar Component', () => {
 
       vi.advanceTimersByTime(300);
 
-      await waitFor(() => {
-        expect(mockOnSearch).toHaveBeenCalledWith(specialChars);
-      });
+      expect(mockOnSearch).toHaveBeenCalledWith(specialChars);
     });
 
-    it('should handle very long input strings', async () => {
+    it('should handle very long input strings', () => {
       const mockOnSearch = vi.fn();
       render(<SearchBar onSearch={mockOnSearch} />);
 
@@ -318,9 +304,7 @@ describe('SearchBar Component', () => {
 
       vi.advanceTimersByTime(300);
 
-      await waitFor(() => {
-        expect(mockOnSearch).toHaveBeenCalledWith(longString);
-      });
+      expect(mockOnSearch).toHaveBeenCalledWith(longString);
     });
   });
 
