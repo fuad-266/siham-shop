@@ -35,7 +35,7 @@ const ShoppingCart = () => {
 
             <div className="shopping-cart__layout">
                 {/* Cart Items */}
-                <div className="shopping-cart__items">
+                <div className="shopping-cart__items" aria-live="polite">
                     {items.map((item) => (
                         <div key={item.id} className="shopping-cart__item">
                             <img
@@ -92,7 +92,7 @@ const ShoppingCart = () => {
                         </div>
                     ))}
 
-                    <button onClick={clearCart} className="shopping-cart__clear-btn">
+                    <button onClick={clearCart} className="shopping-cart__clear-btn" aria-label="Clear all items from cart">
                         Clear Cart
                     </button>
                 </div>

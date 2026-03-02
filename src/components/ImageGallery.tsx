@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { ZoomAnimation } from './ZoomAnimation';
 import './ImageGallery.css';
 
@@ -34,6 +34,14 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({ images, productName 
         if (e.key === 'ArrowLeft' && selectedIndex > 0) setSelectedIndex(selectedIndex - 1);
         if (e.key === 'ArrowRight' && selectedIndex < images.length - 1) setSelectedIndex(selectedIndex + 1);
     };
+
+    // Focus trap for zoom modal
+    const closeButtonRef = useRef<HTMLButtonElement>(null);
+    useEffect(() => {
+        if (isZoomed && closeButtonRef.current) {
+            closeButtonRef.current.focus();
+        }
+    }, [isZoomed]);
 
     return (
         <div className="image-gallery" onKeyDown={handleKeyDown} tabIndex={0}>
@@ -73,10 +81,13 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({ images, productName 
                     className="image-gallery__modal"
                     onClick={handleCloseZoom}
                     role="dialog"
+                    aria-modal="true"
                     aria-label="Zoomed product image"
+                    onKeyDown={(e) => { if (e.key === 'Escape') handleCloseZoom(); }}
                 >
                     <div className="image-gallery__modal-content" onClick={(e) => e.stopPropagation()}>
                         <button
+                            ref={closeButtonRef}
                             className="image-gallery__modal-close"
                             onClick={handleCloseZoom}
                             aria-label="Close zoom"
