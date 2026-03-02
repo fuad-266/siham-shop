@@ -1,172 +1,58 @@
-/**
- * SearchBar Component Styles
- * 
- * Provides styling for the search bar component with:
- * - Clean, modern design
- * - Responsive layout
- * - Smooth transitions
- * - Accessible focus states
- */
-
 .search-bar {
   width: 100%;
   max-width: 600px;
   margin: 0 auto;
 }
 
-.search-bar__container {
+.search-bar__inner {
   position: relative;
   display: flex;
   align-items: center;
-  background-color: #ffffff;
-  border: 2px solid #e5e7eb;
-  border-radius: 8px;
-  padding: 0 16px;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+  padding: 0.5rem 0;
+  transition: border-color 0.3s ease;
 }
 
-.search-bar__container:focus-within {
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+.search-bar__inner:focus-within {
+  border-bottom-color: #333;
 }
 
 .search-bar__icon {
-  flex-shrink: 0;
-  color: #6b7280;
-  margin-right: 12px;
-  transition: color 0.2s ease;
-}
-
-.search-bar__container:focus-within .search-bar__icon {
-  color: #3b82f6;
+  padding: 0 0.75rem;
+  color: #999;
+  display: flex;
+  align-items: center;
 }
 
 .search-bar__input {
   flex: 1;
   border: none;
-  outline: none;
-  padding: 12px 0;
-  font-size: 16px;
-  color: #1f2937;
   background: transparent;
-  min-width: 0; /* Prevent flex item from overflowing */
+  padding: 0.75rem 0;
+  font-size: 1rem;
+  font-family: inherit;
+  color: #333;
+  outline: none;
 }
 
 .search-bar__input::placeholder {
-  color: #9ca3af;
+  color: #bbb;
+  font-weight: 300;
+  letter-spacing: 0.05em;
 }
 
 .search-bar__clear {
-  flex-shrink: 0;
+  background: transparent;
+  border: none;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  color: #999;
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border: none;
-  background: transparent;
-  color: #6b7280;
-  cursor: pointer;
-  border-radius: 4px;
-  transition: background-color 0.2s ease, color 0.2s ease;
-  margin-left: 8px;
+  transition: color 0.2s ease;
 }
 
 .search-bar__clear:hover {
-  background-color: #f3f4f6;
-  color: #1f2937;
-}
-
-.search-bar__clear:focus {
-  outline: 2px solid #3b82f6;
-  outline-offset: 2px;
-}
-
-.search-bar__clear:active {
-  background-color: #e5e7eb;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .search-bar {
-    max-width: 100%;
-  }
-
-  .search-bar__container {
-    padding: 0 12px;
-  }
-
-  .search-bar__input {
-    font-size: 16px; /* Prevent zoom on iOS */
-    padding: 10px 0;
-  }
-
-  .search-bar__icon {
-    margin-right: 8px;
-  }
-
-  .search-bar__clear {
-    width: 28px;
-    height: 28px;
-  }
-}
-
-/* Dark mode support (optional) */
-@media (prefers-color-scheme: dark) {
-  .search-bar__container {
-    background-color: #1f2937;
-    border-color: #374151;
-  }
-
-  .search-bar__input {
-    color: #f9fafb;
-  }
-
-  .search-bar__input::placeholder {
-    color: #6b7280;
-  }
-
-  .search-bar__icon {
-    color: #9ca3af;
-  }
-
-  .search-bar__container:focus-within .search-bar__icon {
-    color: #60a5fa;
-  }
-
-  .search-bar__clear {
-    color: #9ca3af;
-  }
-
-  .search-bar__clear:hover {
-    background-color: #374151;
-    color: #f9fafb;
-  }
-}
-
-/* Accessibility: High contrast mode */
-@media (prefers-contrast: high) {
-  .search-bar__container {
-    border-width: 3px;
-  }
-
-  .search-bar__container:focus-within {
-    border-color: #1e40af;
-  }
-}
-
-/* Animation for clear button appearance */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-.search-bar__clear {
-  animation: fadeIn 0.15s ease-out;
+  color: #333;
 }

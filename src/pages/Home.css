@@ -32,6 +32,12 @@
   color: #666;
   font-weight: 300;
   letter-spacing: 0.05em;
+  margin-bottom: 2rem;
+}
+
+.home-page__search-container {
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 .home-page__main {
@@ -63,7 +69,7 @@
   .home-page__sidebar {
     position: static;
   }
-  
+
   .home-page__title {
     font-size: 2rem;
   }

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ProductCatalog, FilterPanel } from '../components';
+import { ProductCatalog, FilterPanel, SearchBar } from '../components';
 import { useProductFilter } from '../hooks/useProductFilter';
 import { products } from '../data/products';
 import { FilterOptions } from '../types/models';
@@ -16,6 +16,13 @@ const Home = () => {
         setFilters(newFilters);
     };
 
+    const handleSearch = (query: string) => {
+        setFilters((prev) => ({
+            ...prev,
+            searchQuery: query,
+        }));
+    };
+
     const handleProductClick = (productId: string) => {
         console.log('Product clicked:', productId);
         // Future: navigate to product detail page
@@ -27,6 +34,9 @@ const Home = () => {
                 <div className="container">
                     <h1 className="home-page__title">Alora Abayas</h1>
                     <p className="home-page__subtitle">Premium Abayas E-Commerce</p>
+                    <div className="home-page__search-container">
+                        <SearchBar onSearch={handleSearch} />
+                    </div>
                 </div>
             </header>
 
