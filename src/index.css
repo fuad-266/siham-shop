@@ -1,7 +1,20 @@
+/* CSS Custom Properties for Responsive Design */
+:root {
+  --breakpoint-mobile: 767px;
+  --breakpoint-tablet: 1023px;
+  --font-size-base: 16px;
+  --spacing-unit: 1rem;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -10,8 +23,53 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: var(--font-size-base);
+  line-height: 1.5;
+  overflow-x: hidden;
 }
 
 #root {
   min-height: 100vh;
+}
+
+/* Base responsive typography */
+@media (max-width: 767px) {
+  :root {
+    --font-size-base: 15px;
+    --spacing-unit: 0.875rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  :root {
+    --font-size-base: 15.5px;
+    --spacing-unit: 0.9375rem;
+  }
+}
+
+/* Improve touch interactions on mobile */
+@media (max-width: 767px) {
+
+  button,
+  a,
+  input,
+  select,
+  textarea {
+    touch-action: manipulation;
+  }
+}
+
+/* Reduced motion support at global level */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

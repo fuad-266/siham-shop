@@ -77,10 +77,42 @@
     color: #fff;
 }
 
-@media (max-width: 480px) {
+/* Tablet Styles (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
     .cart-notification {
-        left: 1rem;
-        right: 1rem;
-        bottom: 1rem;
+        bottom: 1.5rem;
+        right: 1.5rem;
+        min-width: 260px;
+    }
+}
+
+/* Mobile Styles (max-width: 767px) */
+@media (max-width: 767px) {
+    .cart-notification {
+        left: 0.75rem;
+        right: 0.75rem;
+        bottom: 0.75rem;
+        min-width: unset;
+    }
+
+    .cart-notification__close {
+        min-width: 44px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .cart-notification__view-cart {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+    }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    .cart-notification {
+        animation: none;
     }
 }

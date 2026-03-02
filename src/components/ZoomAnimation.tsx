@@ -1,5 +1,6 @@
 import { motion, useInView, Variants } from 'framer-motion';
 import { useRef, useEffect, useState } from 'react';
+import { useViewport } from '../hooks/useViewport';
 
 interface ZoomAnimationProps {
   children: React.ReactNode;
@@ -13,9 +14,10 @@ interface ZoomAnimationProps {
  * 
  * Provides configurable zoom animation effects with accessibility support.
  * Respects user's prefers-reduced-motion preference.
+ * Adjusts zoom intensity for mobile devices (Requirement 6.3).
  * 
  * @param trigger - Animation trigger mode: 'hover', 'click', or 'inView'
- * @param scale - Target scale factor (default: 1.05)
+ * @param scale - Target scale factor (default: 1.05, reduced to 1.02 on mobile)
  * @param duration - Animation duration in seconds (default: 0.3, max: 0.5)
  */
 export const ZoomAnimation: React.FC<ZoomAnimationProps> = ({
@@ -28,6 +30,7 @@ export const ZoomAnimation: React.FC<ZoomAnimationProps> = ({
   const isInView = useInView(ref, { once: true, margin: '-100px' });
   const [isClicked, setIsClicked] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const { isMobile } = useViewport();
 
   // Check for prefers-reduced-motion preference
   useEffect(() => {
@@ -45,8 +48,11 @@ export const ZoomAnimation: React.FC<ZoomAnimationProps> = ({
   // Ensure duration doesn't exceed 500ms (0.5s)
   const constrainedDuration = Math.min(duration, 0.5);
 
+  // Reduce zoom intensity on mobile (Requirement 6.3)
+  const mobileAdjustedScale = isMobile ? Math.min(scale, 1.02) : scale;
+
   // If reduced motion is preferred, disable animations
-  const effectiveScale = prefersReducedMotion ? 1 : scale;
+  const effectiveScale = prefersReducedMotion ? 1 : mobileAdjustedScale;
   const effectiveDuration = prefersReducedMotion ? 0 : constrainedDuration;
 
   const variants: Variants = {

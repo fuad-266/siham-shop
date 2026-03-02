@@ -1,5 +1,6 @@
 import { Product } from '../types/models';
 import { ZoomAnimation } from './ZoomAnimation';
+import LazyImage from './LazyImage';
 import './ProductCard.css';
 
 interface ProductCardProps {
@@ -13,12 +14,13 @@ interface ProductCardProps {
  * 
  * Displays individual product preview with hover zoom effect.
  * Features:
- * - Product image, name, price, available sizes
+ * - Product image with lazy loading (Requirement 8.2)
+ * - Product name, price, available sizes
  * - Hover zoom animation using ZoomAnimation wrapper
  * - Responsive design for mobile/desktop
  * - Accessibility support
  * 
- * Requirements: 1.2, 2.1
+ * Requirements: 1.2, 2.1, 8.2
  */
 export const ProductCard: React.FC<ProductCardProps> = ({
   product,
@@ -53,11 +55,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     >
       <ZoomAnimation trigger="hover" scale={1.05} duration={0.3}>
         <div className="product-card__image-container">
-          <img
-            src={product.images[0]}
+          <LazyImage
+            src={product.images[0] || ''}
             alt={product.name}
             className="product-card__image"
-            loading="lazy"
           />
           {!product.inStock && (
             <div className="product-card__out-of-stock" aria-label="Out of stock">
@@ -74,7 +75,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
       <div className="product-card__content">
         <h3 className="product-card__name">{product.name}</h3>
-        
+
         <p className="product-card__price" aria-label={`Price: ${formattedPrice}`}>
           {formattedPrice}
         </p>

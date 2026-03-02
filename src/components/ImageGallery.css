@@ -121,13 +121,67 @@
     color: #ccc;
 }
 
-@media (max-width: 768px) {
+/* Tablet Styles (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
     .image-gallery__main-img {
-        height: 350px;
+        height: 420px;
+    }
+
+    .image-gallery__thumbnail {
+        width: 64px;
+        height: 64px;
+    }
+}
+
+/* Mobile Styles (max-width: 767px) */
+@media (max-width: 767px) {
+    .image-gallery__main-img {
+        height: 300px;
+    }
+
+    .image-gallery__thumbnails {
+        flex-wrap: wrap;
     }
 
     .image-gallery__thumbnail {
         width: 56px;
         height: 56px;
+        min-width: 44px;
+        min-height: 44px;
+    }
+
+    .image-gallery__modal-close {
+        top: -44px;
+        min-width: 44px;
+        min-height: 44px;
+        padding: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .image-gallery__modal-content {
+        max-width: 95vw;
+    }
+
+    .image-gallery__modal-img {
+        max-width: 95vw;
+        max-height: 80vh;
+    }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    .image-gallery__zoom-hint {
+        transition: none;
+        opacity: 1;
+    }
+
+    .image-gallery__thumbnail {
+        transition: none;
+    }
+
+    .image-gallery__modal {
+        animation: none;
     }
 }

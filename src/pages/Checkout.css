@@ -503,8 +503,32 @@
     font-size: 1rem;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
+/* Tablet Styles (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .checkout__layout {
+        grid-template-columns: 1fr 300px;
+        gap: 2rem;
+    }
+
+    .checkout__steps {
+        gap: 1.5rem;
+    }
+
+    .checkout__section-title {
+        font-size: 1.35rem;
+    }
+
+    .checkout__payment-methods {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* Mobile Styles (max-width: 767px) */
+@media (max-width: 767px) {
+    .checkout {
+        padding: 1rem 0.75rem;
+    }
+
     .checkout__layout {
         grid-template-columns: 1fr;
     }
@@ -518,12 +542,73 @@
         grid-template-columns: 1fr;
     }
 
+    .checkout__row:has(> :nth-child(3)) {
+        grid-template-columns: 1fr;
+    }
+
     .checkout__steps {
-        gap: 1rem;
+        gap: 0.75rem;
         font-size: 0.8rem;
+    }
+
+    .checkout__step-num {
+        width: 24px;
+        height: 24px;
+        font-size: 0.65rem;
     }
 
     .checkout__payment-methods {
         grid-template-columns: 1fr;
+    }
+
+    .checkout__section-title {
+        font-size: 1.25rem;
+    }
+
+    .checkout__next-btn,
+    .checkout__place-order-btn,
+    .checkout__back-step-btn,
+    .checkout__browse-btn,
+    .checkout__back-btn,
+    .checkout__continue-btn,
+    .checkout__upload-btn {
+        min-height: 44px;
+    }
+
+    .checkout__payment-option {
+        min-height: 44px;
+    }
+
+    .checkout__field input {
+        min-height: 44px;
+        padding: 0.625rem;
+    }
+
+    .checkout__nav-row {
+        flex-direction: column-reverse;
+        gap: 0.75rem;
+    }
+
+    .checkout__back-step-btn,
+    .checkout__place-order-btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .checkout__order-details,
+    .checkout__delivery-info {
+        max-width: 100%;
+    }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+
+    .checkout__payment-option,
+    .checkout__next-btn,
+    .checkout__place-order-btn,
+    .checkout__back-step-btn,
+    .checkout__upload-btn {
+        transition: none;
     }
 }

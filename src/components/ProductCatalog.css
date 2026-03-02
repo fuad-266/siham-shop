@@ -92,8 +92,10 @@
 /* Product Item with Scroll Animation */
 .product-catalog__item {
   opacity: 0;
-  transform: scale(0.9);
+  transform: scale(0.9) translateZ(0);
+  /* GPU layer promotion */
   transition: opacity 0.5s ease, transform 0.5s ease;
+  will-change: opacity, transform;
 }
 
 .product-catalog__item--visible {

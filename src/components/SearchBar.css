@@ -56,3 +56,49 @@
 .search-bar__clear:hover {
   color: #333;
 }
+
+/* Tablet Styles (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .search-bar {
+    max-width: 500px;
+  }
+}
+
+/* Mobile Styles (max-width: 767px) */
+@media (max-width: 767px) {
+  .search-bar {
+    max-width: 100%;
+  }
+
+  .search-bar__input {
+    font-size: 16px;
+    /* Prevent iOS zoom on focus */
+    padding: 0.625rem 0;
+  }
+
+  .search-bar__clear {
+    min-width: 44px;
+    min-height: 44px;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .search-bar__icon {
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+
+  .search-bar__inner,
+  .search-bar__clear {
+    transition: none;
+  }
+}
