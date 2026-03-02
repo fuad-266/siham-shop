@@ -5,9 +5,7 @@ import './ProductCatalog.css';
 
 interface ProductCatalogProps {
   products: Product[];
-  selectedCategory?: string;
-  onCategoryChange: (category: string) => void;
-  resultCount?: number;
+  onProductClick: (productId: string) => void;
 }
 
 /**
@@ -24,21 +22,11 @@ interface ProductCatalogProps {
  */
 export const ProductCatalog: React.FC<ProductCatalogProps> = ({
   products,
-  selectedCategory,
-  onCategoryChange,
-  resultCount,
+  onProductClick,
 }) => {
   const [visibleProducts, setVisibleProducts] = useState<Set<string>>(new Set());
   const observerRef = useRef<IntersectionObserver | null>(null);
   const productRefs = useRef<Map<string, HTMLDivElement>>(new Map());
-
-  // Get unique categories from products
-  const categories = ['all', ...Array.from(new Set(products.map(p => p.category)))];
-
-  // Filter products by selected category
-  const filteredProducts = selectedCategory && selectedCategory !== 'all'
-    ? products.filter(p => p.category === selectedCategory)
-    : products;
 
   // Set up Intersection Observer for scroll-triggered animations
   useEffect(() => {
@@ -72,7 +60,7 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
         observerRef.current.disconnect();
       }
     };
-  }, [filteredProducts]);
+  }, [products]);
 
   // Handle product ref assignment
   const setProductRef = (productId: string, element: HTMLDivElement | null) => {
@@ -94,43 +82,25 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
 
   return (
     <div className="product-catalog">
-      {/* Category Filter Buttons */}
-      <div className="product-catalog__filters" role="navigation" aria-label="Product category filters">
-        {categories.map((category) => (
-          <button
-            key={category}
-            className={`product-catalog__filter-btn ${
-              (selectedCategory || 'all') === category ? 'product-catalog__filter-btn--active' : ''
-            }`}
-            onClick={() => handleCategoryClick(category)}
-            aria-pressed={(selectedCategory || 'all') === category}
-            aria-label={`Filter by ${category} category`}
-          >
-            {category.charAt(0).toUpperCase() + category.slice(1)}
-          </button>
-        ))}
-      </div>
-
       {/* Product Count */}
       <div className="product-catalog__count" aria-live="polite">
-        {resultCount !== undefined ? resultCount : filteredProducts.length} {(resultCount !== undefined ? resultCount : filteredProducts.length) === 1 ? 'product' : 'products'} found
+        {products.length} {products.length === 1 ? 'product' : 'products'} found
       </div>
 
       {/* Product Grid */}
       <div className="product-catalog__grid" role="list">
-        {filteredProducts.map((product) => (
+        {products.map((product) => (
           <div
             key={product.id}
             ref={(el) => setProductRef(product.id, el)}
             data-product-id={product.id}
-            className={`product-catalog__item ${
-              visibleProducts.has(product.id) ? 'product-catalog__item--visible' : ''
-            }`}
+            className={`product-catalog__item ${visibleProducts.has(product.id) ? 'product-catalog__item--visible' : ''
+              }`}
             role="listitem"
           >
             <ProductCard
               product={product}
-              onProductClick={handleProductClick}
+              onProductClick={onProductClick}
               inView={visibleProducts.has(product.id)}
             />
           </div>
@@ -138,15 +108,9 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
       </div>
 
       {/* Empty State */}
-      {filteredProducts.length === 0 && (
+      {products.length === 0 && (
         <div className="product-catalog__empty" role="status">
-          <p>No products found in this category.</p>
-          <button
-            className="product-catalog__reset-btn"
-            onClick={() => handleCategoryClick('all')}
-          >
-            View All Products
-          </button>
+          <p>No products found matching your criteria.</p>
         </div>
       )}
     </div>

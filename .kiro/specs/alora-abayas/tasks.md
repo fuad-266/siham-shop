@@ -91,7 +91,7 @@ This implementation plan breaks down the Alora Abayas e-commerce website into di
     - **Validates: Requirements 1.2, 3.4, 4.3, 5.5**
 
 - [ ] 5. Implement search functionality
-  - [~] 5.1 Create SearchBar component
+  - [-] 5.1 Create SearchBar component
     - Implement debounced search input
     - Add clear button and search icon
     - Make visible on all pages
