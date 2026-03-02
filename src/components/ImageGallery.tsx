@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { ZoomAnimation } from './ZoomAnimation';
+import LazyImage from './LazyImage';
 import './ImageGallery.css';
 
 interface ImageGalleryProps {
@@ -48,7 +49,7 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({ images, productName 
             {/* Main Image */}
             <div className="image-gallery__main" onClick={handleMainImageClick}>
                 <ZoomAnimation trigger="hover" scale={1.03} duration={0.3}>
-                    <img
+                    <LazyImage
                         src={images[selectedIndex]}
                         alt={`${productName} - Image ${selectedIndex + 1}`}
                         className="image-gallery__main-img"
@@ -69,7 +70,7 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({ images, productName 
                             aria-selected={index === selectedIndex}
                             aria-label={`View image ${index + 1}`}
                         >
-                            <img src={image} alt={`${productName} thumbnail ${index + 1}`} />
+                            <LazyImage src={image} alt={`${productName} thumbnail ${index + 1}`} />
                         </button>
                     ))}
                 </div>

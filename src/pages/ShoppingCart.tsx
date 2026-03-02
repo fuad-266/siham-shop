@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../hooks/useCart';
 import { ZoomAnimation } from '../components/ZoomAnimation';
+import LazyImage from '../components/LazyImage';
 import './ShoppingCart.css';
 
 /**
@@ -38,7 +39,7 @@ const ShoppingCart = () => {
                 <div className="shopping-cart__items" aria-live="polite">
                     {items.map((item) => (
                         <div key={item.id} className="shopping-cart__item">
-                            <img
+                            <LazyImage
                                 src={item.product.images[0]}
                                 alt={item.product.name}
                                 className="shopping-cart__item-img"

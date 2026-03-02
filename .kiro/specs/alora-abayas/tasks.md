@@ -239,7 +239,7 @@ This implementation plan breaks down the Alora Abayas e-commerce website into di
   - Ensure all tests pass, ask the user if questions arise.
 
 - [x] 12. Implement responsive design
-  - [x] 12.1 Add responsive breakpoints and media queries
+  - [-] 12.1 Add responsive breakpoints and media queries
     - Define breakpoints: mobile (320px-767px), tablet (768px-1023px), desktop (1024px+)
     - Implement responsive grid layouts
     - Adjust font sizes and spacing for different viewports
@@ -275,7 +275,7 @@ This implementation plan breaks down the Alora Abayas e-commerce website into di
     - Only load images when they approach viewport
     - _Requirements: 8.2_
   
-  - [x] 13.2 Add loading indicators
+  - [-] 13.2 Add loading indicators
     - Create loading spinner component with zoom animation
     - Show loading states for async operations
     - Add skeleton screens for product catalog

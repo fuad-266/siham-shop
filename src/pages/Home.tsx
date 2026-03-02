@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ProductCatalog, FilterPanel, SearchBar } from '../components';
 import { useProductFilter } from '../hooks/useProductFilter';
@@ -10,11 +10,21 @@ import './Home.css';
 const Home = () => {
     const navigate = useNavigate();
     const { itemCount } = useCart();
+    const [loading, setLoading] = useState(true);
     const [filters, setFilters] = useState<FilterOptions>({
         category: 'all',
     });
 
     const { filteredProducts } = useProductFilter(products, filters);
+
+    // Simulate initial data loading
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setLoading(false);
+        }, 800);
+
+        return () => clearTimeout(timer);
+    }, []);
 
     const handleFilterChange = (newFilters: FilterOptions) => {
         setFilters(newFilters);
@@ -75,6 +85,7 @@ const Home = () => {
                         onProductClick={handleProductClick}
                         searchQuery={filters.searchQuery}
                         onClearFilters={() => setFilters({ category: 'all' })}
+                        loading={loading}
                     />
                 </section>
             </main>

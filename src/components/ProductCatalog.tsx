@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Product } from '../types/models';
 import { ProductCard } from './ProductCard';
+import ProductSkeleton from './ProductSkeleton';
 import './ProductCatalog.css';
 
 interface ProductCatalogProps {
@@ -8,6 +9,7 @@ interface ProductCatalogProps {
   onProductClick: (productId: string) => void;
   searchQuery?: string;
   onClearFilters?: () => void;
+  loading?: boolean;
 }
 
 /**
@@ -20,13 +22,14 @@ interface ProductCatalogProps {
  * - Category filter buttons
  * - Loading states with animated skeletons
  * 
- * Requirements: 1.1, 1.3, 1.4, 1.5
+ * Requirements: 1.1, 1.3, 1.4, 1.5, 8.3
  */
 export const ProductCatalog: React.FC<ProductCatalogProps> = ({
   products,
   onProductClick,
   searchQuery,
   onClearFilters,
+  loading = false,
 }) => {
   const [visibleProducts, setVisibleProducts] = useState<Set<string>>(new Set());
   const observerRef = useRef<IntersectionObserver | null>(null);
@@ -74,6 +77,15 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
       productRefs.current.delete(productId);
     }
   };
+
+  // Show loading skeleton
+  if (loading) {
+    return (
+      <div className="product-catalog">
+        <ProductSkeleton count={8} />
+      </div>
+    );
+  }
 
   return (
     <div className="product-catalog">

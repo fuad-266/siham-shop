@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useCart } from '../hooks/useCart';
 import { CustomerInfo, Order } from '../types/models';
+import LazyImage from '../components/LazyImage';
 import './Checkout.css';
 
 type CheckoutStep = 'shipping' | 'payment' | 'confirmation';
@@ -383,7 +384,7 @@ const Checkout = () => {
                         <div className="checkout__sidebar-items">
                             {items.map((item) => (
                                 <div key={item.id} className="checkout__sidebar-item">
-                                    <img src={item.product.images[0]} alt={item.product.name} />
+                                    <LazyImage src={item.product.images[0]} alt={item.product.name} />
                                     <div>
                                         <p className="checkout__sidebar-item-name">{item.product.name}</p>
                                         <p className="checkout__sidebar-item-opts">{item.selectedSize} / {item.selectedColor} × {item.quantity}</p>

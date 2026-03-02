@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import './LoadingSpinner.css';
 
 interface LoadingSpinnerProps {
@@ -18,11 +19,19 @@ const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
     message,
 }) => {
     return (
-        <div className={`loading-spinner loading-spinner--${size}`} role="status" aria-live="polite">
+        <motion.div
+            className={`loading-spinner loading-spinner--${size}`}
+            role="status"
+            aria-live="polite"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.3 }}
+        >
             <div className="loading-spinner__circle" />
             {message && <p className="loading-spinner__message">{message}</p>}
             <span className="loading-spinner__sr-only">Loading...</span>
-        </div>
+        </motion.div>
     );
 };
 
