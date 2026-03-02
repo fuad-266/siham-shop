@@ -97,7 +97,7 @@ This implementation plan breaks down the Alora Abayas e-commerce website into di
     - Make visible on all pages
     - _Requirements: 7.1, 7.2_
   
-  - [-] 5.2 Integrate search with product filtering
+  - [x] 5.2 Integrate search with product filtering
     - Connect SearchBar to filtering logic
     - Display "no results" message when appropriate
     - _Requirements: 7.2, 7.6_

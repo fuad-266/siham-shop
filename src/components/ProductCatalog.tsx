@@ -6,6 +6,8 @@ import './ProductCatalog.css';
 interface ProductCatalogProps {
   products: Product[];
   onProductClick: (productId: string) => void;
+  searchQuery?: string;
+  onClearFilters?: () => void;
 }
 
 /**
@@ -23,6 +25,8 @@ interface ProductCatalogProps {
 export const ProductCatalog: React.FC<ProductCatalogProps> = ({
   products,
   onProductClick,
+  searchQuery,
+  onClearFilters,
 }) => {
   const [visibleProducts, setVisibleProducts] = useState<Set<string>>(new Set());
   const observerRef = useRef<IntersectionObserver | null>(null);
@@ -98,10 +102,27 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
         ))}
       </div>
 
-      {/* Empty State */}
+      {/* Empty State (Requirement 7.6) */}
       {products.length === 0 && (
         <div className="product-catalog__empty" role="status">
-          <p>No products found matching your criteria.</p>
+          {searchQuery ? (
+            <>
+              <p>No results found for "{searchQuery}".</p>
+              <p className="product-catalog__empty-suggestion">
+                Try searching for "black abaya", "formal", or "embroidered".
+              </p>
+            </>
+          ) : (
+            <p>No products found matching your filters.</p>
+          )}
+          {onClearFilters && (
+            <button
+              className="product-catalog__reset-btn"
+              onClick={onClearFilters}
+            >
+              Clear All Filters
+            </button>
+          )}
         </div>
       )}
     </div>

@@ -1,0 +1,133 @@
+.image-gallery {
+    outline: none;
+}
+
+.image-gallery__main {
+    position: relative;
+    cursor: zoom-in;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #f5f5f5;
+    margin-bottom: 1rem;
+}
+
+.image-gallery__main-img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    display: block;
+}
+
+.image-gallery__zoom-hint {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.image-gallery__main:hover .image-gallery__zoom-hint {
+    opacity: 1;
+}
+
+/* Thumbnails */
+.image-gallery__thumbnails {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.image-gallery__thumbnail {
+    width: 72px;
+    height: 72px;
+    border: 2px solid transparent;
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+    padding: 0;
+    background: #f5f5f5;
+    transition: border-color 0.2s ease;
+}
+
+.image-gallery__thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.image-gallery__thumbnail--active,
+.image-gallery__thumbnail:hover {
+    border-color: #333;
+}
+
+.image-gallery__thumbnail:focus {
+    outline: 2px solid #4a90e2;
+    outline-offset: 2px;
+}
+
+/* Zoom Modal */
+.image-gallery__modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.image-gallery__modal-content {
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+}
+
+.image-gallery__modal-img {
+    max-width: 90vw;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 4px;
+}
+
+.image-gallery__modal-close {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0.25rem 0.5rem;
+}
+
+.image-gallery__modal-close:hover {
+    color: #ccc;
+}
+
+@media (max-width: 768px) {
+    .image-gallery__main-img {
+        height: 350px;
+    }
+
+    .image-gallery__thumbnail {
+        width: 56px;
+        height: 56px;
+    }
+}

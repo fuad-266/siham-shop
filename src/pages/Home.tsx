@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ProductCatalog, FilterPanel, SearchBar } from '../components';
 import { useProductFilter } from '../hooks/useProductFilter';
 import { products } from '../data/products';
@@ -6,6 +7,7 @@ import { FilterOptions } from '../types/models';
 import './Home.css';
 
 const Home = () => {
+    const navigate = useNavigate();
     const [filters, setFilters] = useState<FilterOptions>({
         category: 'all',
     });
@@ -24,8 +26,7 @@ const Home = () => {
     };
 
     const handleProductClick = (productId: string) => {
-        console.log('Product clicked:', productId);
-        // Future: navigate to product detail page
+        navigate(`/product/${productId}`);
     };
 
     return (
@@ -52,6 +53,8 @@ const Home = () => {
                     <ProductCatalog
                         products={filteredProducts}
                         onProductClick={handleProductClick}
+                        searchQuery={filters.searchQuery}
+                        onClearFilters={() => setFilters({ category: 'all' })}
                     />
                 </section>
             </main>
