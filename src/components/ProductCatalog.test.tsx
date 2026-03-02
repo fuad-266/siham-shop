@@ -222,6 +222,15 @@ describe('ProductCatalog', () => {
   });
 
   it('sets up IntersectionObserver for scroll animations', () => {
+    const observeSpy = vi.fn();
+    const mockObserver = vi.fn().mockImplementation(() => ({
+      observe: observeSpy,
+      disconnect: vi.fn(),
+      unobserve: vi.fn(),
+    }));
+    
+    global.IntersectionObserver = mockObserver as any;
+
     render(
       <ProductCatalog
         products={mockProducts}
@@ -229,7 +238,7 @@ describe('ProductCatalog', () => {
       />
     );
 
-    expect(global.IntersectionObserver).toHaveBeenCalled();
+    expect(mockObserver).toHaveBeenCalled();
   });
 
   it('has accessible filter navigation', () => {
