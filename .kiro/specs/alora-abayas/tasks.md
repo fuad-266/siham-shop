@@ -175,19 +175,19 @@ This implementation plan breaks down the Alora Abayas e-commerce website into di
   - Ensure all tests pass, ask the user if questions arise.
 
 - [ ] 10. Implement checkout process
-  - [ ] 10.1 Create CheckoutForm component structure
+- [ ] 10.1 Create CheckoutForm component structure
     - Set up multi-step form layout (shipping → payment → confirmation)
     - Add form navigation (next, back buttons)
     - Implement zoom animation for step transitions
     - _Requirements: 5.1, 5.2_
   
-  - [ ] 10.2 Implement shipping information form
+  - [x] 10.2 Implement shipping information form
     - Create form fields: name, email, phone, street, city, postal code, country
     - Integrate react-hook-form for form management
     - Add real-time validation with error messages
     - _Requirements: 5.2, 5.3, 5.4_
   
-  - [ ] 10.3 Implement payment information section
+  - [x] 10.3 Implement payment information section
     - Display bank account details for transfer
     - Display Telebirr payment information
     - Add file upload input for payment screenshot
@@ -195,13 +195,13 @@ This implementation plan breaks down the Alora Abayas e-commerce website into di
     - Show file preview after upload
     - _Requirements: 5.6, 5.7, 5.8_
   
-  - [ ] 10.4 Create order summary sidebar
+  - [x] 10.4 Create order summary sidebar
     - Display all cart items with quantities
     - Show subtotal, shipping cost, and total
     - Update in real-time as cart changes
     - _Requirements: 5.5_
   
-  - [ ] 10.5 Implement order submission
+  - [x] 10.5 Implement order submission
     - Validate all required fields before submission
     - Ensure payment screenshot is uploaded
     - Create order object with all data
@@ -209,7 +209,7 @@ This implementation plan breaks down the Alora Abayas e-commerce website into di
     - Navigate to confirmation page with zoom animation
     - _Requirements: 5.7, 5.8, 5.9_
   
-  - [ ] 10.6 Create order confirmation page
+  - [x] 10.6 Create order confirmation page
     - Display order number (generated UUID)
     - Show "pending verification" status
     - Display estimated delivery information
