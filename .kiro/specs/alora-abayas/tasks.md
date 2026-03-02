@@ -6,7 +6,7 @@ This implementation plan breaks down the Alora Abayas e-commerce website into di
 
 ## Tasks
 
-- [-] 1. Set up project structure and dependencies
+- [x] 1. Set up project structure and dependencies
   - Initialize React + TypeScript project with Vite or Next.js
   - Install dependencies: framer-motion, react-router-dom, styled-components or tailwindcss, react-hook-form, fast-check
   - Configure TypeScript with strict mode
@@ -15,11 +15,11 @@ This implementation plan breaks down the Alora Abayas e-commerce website into di
   - _Requirements: All_
 
 - [ ] 2. Create data models and mock product data
-  - [~] 2.1 Define TypeScript interfaces for Product, CartItem, Order, CustomerInfo, FilterOptions
+  - [x] 2.1 Define TypeScript interfaces for Product, CartItem, Order, CustomerInfo, FilterOptions
     - Create types/models.ts with all data model interfaces
     - _Requirements: 1.1, 1.2, 4.1, 5.2_
   
-  - [~] 2.2 Create mock product data for abayas
+  - [-] 2.2 Create mock product data for abayas
     - Create data/products.ts with at least 20 sample abaya products
     - Include varied categories (casual, formal, embroidered, plain)
     - Include multiple images, sizes, colors for each product
