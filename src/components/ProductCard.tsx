@@ -5,7 +5,7 @@ import './ProductCard.css';
 interface ProductCardProps {
   product: Product;
   onProductClick: (productId: string) => void;
-  inView?: boolean;
+  inView?: boolean; // Reserved for future scroll-triggered animations
 }
 
 /**
