@@ -50,7 +50,7 @@ This implementation plan breaks down the Alora Abayas e-commerce website into di
     - Make component responsive for mobile/desktop
     - _Requirements: 1.2, 2.1_
   
-  - [~] 4.2 Create ProductCatalog component with grid layout
+  - [-] 4.2 Create ProductCatalog component with grid layout
     - Implement responsive grid (4 cols desktop, 2 tablet, 1 mobile)
     - Add Intersection Observer for scroll-triggered animations
     - Integrate category filter buttons
