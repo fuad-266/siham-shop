@@ -156,6 +156,11 @@
   outline-offset: 2px;
 }
 
+.product-catalog__reset-btn:focus {
+  outline: 2px solid #4a90e2;
+  outline-offset: 2px;
+}
+
 /* Loading State (for future use) */
 .product-catalog__loading {
   display: flex;

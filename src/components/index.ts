@@ -7,3 +7,4 @@ export { ImageGallery } from './ImageGallery';
 export { default as LazyImage } from './LazyImage';
 export { default as LoadingSpinner } from './LoadingSpinner';
 export { default as ProductSkeleton } from './ProductSkeleton';
+export { default as ErrorBoundary } from './ErrorBoundary';

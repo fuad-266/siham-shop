@@ -14,15 +14,18 @@ interface ProductSkeletonProps {
  * Requirements: 8.3
  */
 const ProductSkeleton: React.FC<ProductSkeletonProps> = ({ count = 8 }) => {
+    // Check for prefers-reduced-motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     return (
         <div className="product-skeleton-grid" aria-busy="true" aria-label="Loading products">
             {Array.from({ length: count }).map((_, index) => (
                 <motion.div
                     className="product-skeleton"
                     key={index}
-                    initial={{ opacity: 0, scale: 0.9 }}
+                    initial={prefersReducedMotion ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    transition={{
+                    transition={prefersReducedMotion ? { duration: 0 } : {
                         duration: 0.3,
                         delay: index * 0.05, // Stagger animation
                     }}

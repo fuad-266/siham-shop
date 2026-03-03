@@ -46,7 +46,19 @@ const Checkout = () => {
             <div className="checkout checkout--empty">
                 <h2>Your cart is empty</h2>
                 <p>Add some items before checking out.</p>
-                <button onClick={() => navigate('/')} className="checkout__browse-btn">Browse Abayas</button>
+                <button 
+                    onClick={() => navigate('/')} 
+                    className="checkout__browse-btn"
+                    aria-label="Browse abayas collection"
+                    onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            navigate('/');
+                        }
+                    }}
+                >
+                    Browse Abayas
+                </button>
             </div>
         );
     }
@@ -121,19 +133,30 @@ const Checkout = () => {
 
     return (
         <div className="checkout">
-            <button onClick={() => navigate(step === 'shipping' ? '/cart' : '')} className="checkout__back-btn">
+            <button 
+                onClick={() => navigate(step === 'shipping' ? '/cart' : '')} 
+                className="checkout__back-btn"
+                aria-label={step === 'shipping' ? 'Back to cart' : 'Back'}
+                onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        navigate(step === 'shipping' ? '/cart' : '');
+                    }
+                }}
+            >
                 &larr; {step === 'shipping' ? 'Back to Cart' : 'Back'}
             </button>
 
             {/* Step Indicator */}
-            <div className="checkout__steps">
+            <div className="checkout__steps" role="navigation" aria-label="Checkout progress">
                 {['shipping', 'payment', 'confirmation'].map((s, i) => (
                     <div
                         key={s}
                         className={`checkout__step ${step === s ? 'checkout__step--active' : ''} ${['shipping', 'payment', 'confirmation'].indexOf(step) > i ? 'checkout__step--done' : ''
                             }`}
+                        aria-current={step === s ? 'step' : undefined}
                     >
-                        <span className="checkout__step-num">{i + 1}</span>
+                        <span className="checkout__step-num" aria-hidden="true">{i + 1}</span>
                         <span className="checkout__step-label">{s.charAt(0).toUpperCase() + s.slice(1)}</span>
                     </div>
                 ))}
@@ -144,7 +167,7 @@ const Checkout = () => {
                 <div className="checkout__main">
                     {/* ---- SHIPPING STEP ---- */}
                     {step === 'shipping' && (
-                        <div className="checkout__section">
+                        <div className="checkout__section" role="region" aria-label="Shipping information form">
                             <h2 className="checkout__section-title">Shipping Information</h2>
                             <form onSubmit={(e) => { e.preventDefault(); handleShippingSubmit(); }}>
                                 <div className="checkout__field">
@@ -222,14 +245,22 @@ const Checkout = () => {
 
                     {/* ---- PAYMENT STEP ---- */}
                     {step === 'payment' && (
-                        <div className="checkout__section">
+                        <div className="checkout__section" role="region" aria-label="Payment information">
                             <h2 className="checkout__section-title">Payment</h2>
 
                             {/* Payment Method Selection */}
-                            <div className="checkout__payment-methods">
+                            <div className="checkout__payment-methods" role="radiogroup" aria-label="Select payment method">
                                 <button
                                     className={`checkout__payment-option ${paymentData.method === 'telebirr' ? 'checkout__payment-option--active' : ''}`}
                                     onClick={() => setPaymentData((p) => ({ ...p, method: 'telebirr' }))}
+                                    role="radio"
+                                    aria-checked={paymentData.method === 'telebirr'}
+                                    onKeyDown={(e) => {
+                                        if (e.key === 'Enter' || e.key === ' ') {
+                                            e.preventDefault();
+                                            setPaymentData((p) => ({ ...p, method: 'telebirr' }));
+                                        }
+                                    }}
                                 >
                                     <strong>Telebirr</strong>
                                     <span>Mobile Payment</span>
@@ -237,6 +268,14 @@ const Checkout = () => {
                                 <button
                                     className={`checkout__payment-option ${paymentData.method === 'bank_transfer' ? 'checkout__payment-option--active' : ''}`}
                                     onClick={() => setPaymentData((p) => ({ ...p, method: 'bank_transfer' }))}
+                                    role="radio"
+                                    aria-checked={paymentData.method === 'bank_transfer'}
+                                    onKeyDown={(e) => {
+                                        if (e.key === 'Enter' || e.key === ' ') {
+                                            e.preventDefault();
+                                            setPaymentData((p) => ({ ...p, method: 'bank_transfer' }));
+                                        }
+                                    }}
                                 >
                                     <strong>Bank Transfer</strong>
                                     <span>Direct Deposit</span>
@@ -299,7 +338,7 @@ const Checkout = () => {
                                     id="payment-screenshot"
                                 />
                                 <label htmlFor="payment-screenshot" className="checkout__upload-btn">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                                         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                                         <polyline points="17 8 12 3 7 8"></polyline>
                                         <line x1="12" y1="3" x2="12" y2="15"></line>
@@ -309,7 +348,7 @@ const Checkout = () => {
 
                                 {paymentData.screenshotPreview && paymentData.screenshot?.type.startsWith('image/') && (
                                     <div className="checkout__preview">
-                                        <img src={paymentData.screenshotPreview} alt="Payment screenshot preview" />
+                                        <img src={paymentData.screenshotPreview} alt={`Payment confirmation screenshot for ${paymentData.method === 'telebirr' ? 'Telebirr' : 'Bank Transfer'} - ${paymentData.screenshot.name}`} />
                                         <span>{paymentData.screenshot.name}</span>
                                     </div>
                                 )}
@@ -321,11 +360,28 @@ const Checkout = () => {
                             </div>
 
                             <div className="checkout__nav-row">
-                                <button onClick={() => setStep('shipping')} className="checkout__back-step-btn">
+                                <button 
+                                    onClick={() => setStep('shipping')} 
+                                    className="checkout__back-step-btn"
+                                    aria-label="Back to shipping information"
+                                    onKeyDown={(e) => {
+                                        if (e.key === 'Enter' || e.key === ' ') {
+                                            e.preventDefault();
+                                            setStep('shipping');
+                                        }
+                                    }}
+                                >
                                     ← Back to Shipping
                                 </button>
                                 <button
                                     onClick={handlePlaceOrder}
+                                    aria-label="Place order"
+                                    onKeyDown={(e) => {
+                                        if (e.key === 'Enter' || e.key === ' ') {
+                                            e.preventDefault();
+                                            handlePlaceOrder();
+                                        }
+                                    }}
                                     className="checkout__place-order-btn"
                                     disabled={!paymentData.screenshot}
                                 >
@@ -337,8 +393,8 @@ const Checkout = () => {
 
                     {/* ---- CONFIRMATION STEP ---- */}
                     {step === 'confirmation' && order && (
-                        <div className="checkout__section checkout__confirmation">
-                            <div className="checkout__confirmation-icon">✓</div>
+                        <div className="checkout__section checkout__confirmation" role="region" aria-label="Order confirmation" aria-live="polite">
+                            <div className="checkout__confirmation-icon" aria-hidden="true">✓</div>
                             <h2 className="checkout__section-title">Order Placed Successfully!</h2>
                             <p className="checkout__confirmation-status">Status: <strong>Pending Verification</strong></p>
 
@@ -370,7 +426,17 @@ const Checkout = () => {
                                 <p>Your order will be delivered within <strong>3-7 business days</strong> after payment verification.</p>
                             </div>
 
-                            <button onClick={() => navigate('/')} className="checkout__continue-btn">
+                            <button 
+                                onClick={() => navigate('/')} 
+                                className="checkout__continue-btn"
+                                aria-label="Continue shopping"
+                                onKeyDown={(e) => {
+                                    if (e.key === 'Enter' || e.key === ' ') {
+                                        e.preventDefault();
+                                        navigate('/');
+                                    }
+                                }}
+                            >
                                 Continue Shopping
                             </button>
                         </div>
@@ -379,12 +445,12 @@ const Checkout = () => {
 
                 {/* Order Summary Sidebar (visible during shipping & payment) */}
                 {step !== 'confirmation' && (
-                    <aside className="checkout__sidebar">
+                    <aside className="checkout__sidebar" role="complementary" aria-label="Order summary">
                         <h3 className="checkout__sidebar-title">Order Summary</h3>
                         <div className="checkout__sidebar-items">
                             {items.map((item) => (
                                 <div key={item.id} className="checkout__sidebar-item">
-                                    <LazyImage src={item.product.images[0]} alt={item.product.name} />
+                                    <LazyImage src={item.product.images[0]} alt={`${item.product.name} in ${item.selectedColor}, size ${item.selectedSize}`} />
                                     <div>
                                         <p className="checkout__sidebar-item-name">{item.product.name}</p>
                                         <p className="checkout__sidebar-item-opts">{item.selectedSize} / {item.selectedColor} × {item.quantity}</p>

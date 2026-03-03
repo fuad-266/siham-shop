@@ -47,7 +47,19 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({ images, productName 
     return (
         <div className="image-gallery" onKeyDown={handleKeyDown} tabIndex={0}>
             {/* Main Image */}
-            <div className="image-gallery__main" onClick={handleMainImageClick}>
+            <div 
+                className="image-gallery__main" 
+                onClick={handleMainImageClick}
+                onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        handleMainImageClick();
+                    }
+                }}
+                role="button"
+                tabIndex={0}
+                aria-label="Click to zoom image"
+            >
                 <ZoomAnimation trigger="hover" scale={1.03} duration={0.3}>
                     <LazyImage
                         src={images[selectedIndex]}
@@ -66,6 +78,12 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({ images, productName 
                             key={index}
                             className={`image-gallery__thumbnail ${index === selectedIndex ? 'image-gallery__thumbnail--active' : ''}`}
                             onClick={() => handleThumbnailClick(index)}
+                            onKeyDown={(e) => {
+                                if (e.key === 'Enter' || e.key === ' ') {
+                                    e.preventDefault();
+                                    handleThumbnailClick(index);
+                                }
+                            }}
                             role="tab"
                             aria-selected={index === selectedIndex}
                             aria-label={`View image ${index + 1}`}
@@ -91,6 +109,12 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({ images, productName 
                             ref={closeButtonRef}
                             className="image-gallery__modal-close"
                             onClick={handleCloseZoom}
+                            onKeyDown={(e) => {
+                                if (e.key === 'Enter' || e.key === ' ') {
+                                    e.preventDefault();
+                                    handleCloseZoom();
+                                }
+                            }}
                             aria-label="Close zoom"
                         >
                             &times;

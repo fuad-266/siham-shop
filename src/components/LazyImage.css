@@ -4,6 +4,15 @@
     background-color: #f0f0f0;
 }
 
+.lazy-image[role="button"] {
+    cursor: pointer;
+}
+
+.lazy-image[role="button"]:focus {
+    outline: 2px solid #4a90e2;
+    outline-offset: 2px;
+}
+
 /* Skeleton loading placeholder */
 .lazy-image__skeleton {
     position: absolute;

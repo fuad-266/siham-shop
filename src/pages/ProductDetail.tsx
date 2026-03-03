@@ -29,7 +29,17 @@ const ProductDetail = () => {
             <div className="product-detail product-detail--not-found">
                 <h2>Product not found</h2>
                 <p>The product you're looking for doesn't exist.</p>
-                <button onClick={() => navigate('/')} className="product-detail__back-btn">
+                <button 
+                    onClick={() => navigate('/')} 
+                    className="product-detail__back-btn"
+                    aria-label="Back to shop"
+                    onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            navigate('/');
+                        }
+                    }}
+                >
                     Back to Shop
                 </button>
             </div>
@@ -47,7 +57,17 @@ const ProductDetail = () => {
     return (
         <div className="product-detail">
             {/* Back navigation */}
-            <button onClick={() => navigate('/')} className="product-detail__back-btn">
+            <button 
+                onClick={() => navigate('/')} 
+                className="product-detail__back-btn"
+                aria-label="Back to shop"
+                onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        navigate('/');
+                    }
+                }}
+            >
                 &larr; Back to Shop
             </button>
 
@@ -73,6 +93,12 @@ const ProductDetail = () => {
                                     key={size}
                                     className={`product-detail__option ${selectedSize === size ? 'product-detail__option--selected' : ''}`}
                                     onClick={() => setSelectedSize(size)}
+                                    onKeyDown={(e) => {
+                                        if (e.key === 'Enter' || e.key === ' ') {
+                                            e.preventDefault();
+                                            setSelectedSize(size);
+                                        }
+                                    }}
                                     role="radio"
                                     aria-checked={selectedSize === size}
                                 >
@@ -91,6 +117,12 @@ const ProductDetail = () => {
                                     key={color}
                                     className={`product-detail__option ${selectedColor === color ? 'product-detail__option--selected' : ''}`}
                                     onClick={() => setSelectedColor(color)}
+                                    onKeyDown={(e) => {
+                                        if (e.key === 'Enter' || e.key === ' ') {
+                                            e.preventDefault();
+                                            setSelectedColor(color);
+                                        }
+                                    }}
                                     role="radio"
                                     aria-checked={selectedColor === color}
                                 >
@@ -105,6 +137,12 @@ const ProductDetail = () => {
                         <button
                             className={`product-detail__add-to-cart ${(!selectedSize || !selectedColor) ? 'product-detail__add-to-cart--disabled' : ''}`}
                             onClick={handleAddToCart}
+                            onKeyDown={(e) => {
+                                if (e.key === 'Enter' || e.key === ' ') {
+                                    e.preventDefault();
+                                    handleAddToCart();
+                                }
+                            }}
                             disabled={!selectedSize || !selectedColor}
                             aria-label={`Add ${product.name} to cart`}
                         >

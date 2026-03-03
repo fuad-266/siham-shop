@@ -31,6 +31,11 @@
     color: #333;
 }
 
+.product-detail__back-btn:focus {
+    outline: 2px solid #4a90e2;
+    outline-offset: 2px;
+}
+
 .product-detail__layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -140,6 +145,11 @@
 
 .product-detail__add-to-cart:hover:not(:disabled) {
     background: #1a1a1a;
+}
+
+.product-detail__add-to-cart:focus {
+    outline: 2px solid #4a90e2;
+    outline-offset: 2px;
 }
 
 .product-detail__add-to-cart--disabled {

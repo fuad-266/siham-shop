@@ -19,7 +19,17 @@ const ShoppingCart = () => {
             <div className="shopping-cart shopping-cart--empty">
                 <h2>Your Cart is Empty</h2>
                 <p>Discover our beautiful collection of abayas.</p>
-                <button onClick={() => navigate('/')} className="shopping-cart__browse-btn">
+                <button 
+                    onClick={() => navigate('/')} 
+                    className="shopping-cart__browse-btn"
+                    aria-label="Browse abayas collection"
+                    onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            navigate('/');
+                        }
+                    }}
+                >
                     Browse Abayas
                 </button>
             </div>
@@ -28,7 +38,17 @@ const ShoppingCart = () => {
 
     return (
         <div className="shopping-cart">
-            <button onClick={() => navigate('/')} className="shopping-cart__back-btn">
+            <button 
+                onClick={() => navigate('/')} 
+                className="shopping-cart__back-btn"
+                aria-label="Continue shopping"
+                onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        navigate('/');
+                    }
+                }}
+            >
                 &larr; Continue Shopping
             </button>
 
@@ -36,12 +56,12 @@ const ShoppingCart = () => {
 
             <div className="shopping-cart__layout">
                 {/* Cart Items */}
-                <div className="shopping-cart__items" aria-live="polite">
+                <div className="shopping-cart__items" aria-live="polite" aria-atomic="false" role="region" aria-label="Shopping cart items">
                     {items.map((item) => (
                         <div key={item.id} className="shopping-cart__item">
                             <LazyImage
                                 src={item.product.images[0]}
-                                alt={item.product.name}
+                                alt={`${item.product.name} in ${item.selectedColor}, size ${item.selectedSize}`}
                                 className="shopping-cart__item-img"
                                 onClick={() => navigate(`/product/${item.productId}`)}
                             />
@@ -81,9 +101,9 @@ const ShoppingCart = () => {
                                 <button
                                     onClick={() => removeItem(item.id)}
                                     className="shopping-cart__remove-btn"
-                                    aria-label={`Remove ${item.product.name}`}
+                                    aria-label={`Remove ${item.product.name} from cart`}
                                 >
-                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                                         <polyline points="3 6 5 6 21 6"></polyline>
                                         <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
                                     </svg>
@@ -93,30 +113,47 @@ const ShoppingCart = () => {
                         </div>
                     ))}
 
-                    <button onClick={clearCart} className="shopping-cart__clear-btn" aria-label="Clear all items from cart">
+                    <button 
+                        onClick={clearCart} 
+                        className="shopping-cart__clear-btn" 
+                        aria-label="Clear all items from cart"
+                        onKeyDown={(e) => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                                e.preventDefault();
+                                clearCart();
+                            }
+                        }}
+                    >
                         Clear Cart
                     </button>
                 </div>
 
                 {/* Order Summary */}
-                <div className="shopping-cart__summary">
+                <div className="shopping-cart__summary" role="region" aria-label="Order summary">
                     <h2 className="shopping-cart__summary-title">Order Summary</h2>
                     <div className="shopping-cart__summary-row">
                         <span>Subtotal</span>
-                        <span>ETB {subtotal.toLocaleString()}</span>
+                        <span aria-label={`Subtotal: ${subtotal} Ethiopian Birr`}>ETB {subtotal.toLocaleString()}</span>
                     </div>
                     <div className="shopping-cart__summary-row">
                         <span>Shipping</span>
-                        <span>ETB {shippingCost.toLocaleString()}</span>
+                        <span aria-label={`Shipping cost: ${shippingCost} Ethiopian Birr`}>ETB {shippingCost.toLocaleString()}</span>
                     </div>
                     <div className="shopping-cart__summary-row shopping-cart__summary-row--total">
                         <span>Total</span>
-                        <span>ETB {total.toLocaleString()}</span>
+                        <span aria-label={`Total: ${total} Ethiopian Birr`}>ETB {total.toLocaleString()}</span>
                     </div>
                     <ZoomAnimation trigger="hover" scale={1.02} duration={0.2}>
                         <button
                             className="shopping-cart__checkout-btn"
                             onClick={() => navigate('/checkout')}
+                            aria-label="Proceed to checkout"
+                            onKeyDown={(e) => {
+                                if (e.key === 'Enter' || e.key === ' ') {
+                                    e.preventDefault();
+                                    navigate('/checkout');
+                                }
+                            }}
                         >
                             Proceed to Checkout
                         </button>

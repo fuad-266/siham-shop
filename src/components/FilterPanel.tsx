@@ -120,6 +120,12 @@ export const FilterPanel: React.FC<FilterPanelProps> = ({
             <button
               className="filter-panel__clear-btn"
               onClick={handleClearFilters}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  handleClearFilters();
+                }
+              }}
               aria-label="Clear all filters"
             >
               Clear All
@@ -139,6 +145,12 @@ export const FilterPanel: React.FC<FilterPanelProps> = ({
                 localFilters.category === category ? 'filter-panel__category-btn--active' : ''
               }`}
               onClick={() => handleCategoryChange(category)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  handleCategoryChange(category);
+                }
+              }}
               aria-pressed={localFilters.category === category}
               aria-label={`Filter by ${category} category`}
             >

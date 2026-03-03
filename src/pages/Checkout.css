@@ -31,6 +31,11 @@
     font-weight: 600;
 }
 
+.checkout__browse-btn:focus {
+    outline: 2px solid #4a90e2;
+    outline-offset: 2px;
+}
+
 .checkout__back-btn {
     background: none;
     border: none;
@@ -44,6 +49,11 @@
 
 .checkout__back-btn:hover {
     color: #333;
+}
+
+.checkout__back-btn:focus {
+    outline: 2px solid #4a90e2;
+    outline-offset: 2px;
 }
 
 /* Step Indicator */
@@ -181,6 +191,11 @@
     background: #1a1a1a;
 }
 
+.checkout__next-btn:focus {
+    outline: 2px solid #4a90e2;
+    outline-offset: 2px;
+}
+
 /* Payment Methods */
 .checkout__payment-methods {
     display: grid;
@@ -213,6 +228,11 @@
 .checkout__payment-option--active {
     border-color: #333;
     background: #f9f9f9;
+}
+
+.checkout__payment-option:focus {
+    outline: 2px solid #4a90e2;
+    outline-offset: 2px;
 }
 
 /* Payment Info */
@@ -281,6 +301,11 @@
     color: #333;
 }
 
+.checkout__upload-btn:focus {
+    outline: 2px solid #4a90e2;
+    outline-offset: 2px;
+}
+
 .checkout__preview {
     margin-top: 1rem;
     display: flex;
@@ -326,6 +351,11 @@
     color: #333;
 }
 
+.checkout__back-step-btn:focus {
+    outline: 2px solid #4a90e2;
+    outline-offset: 2px;
+}
+
 .checkout__place-order-btn {
     padding: 1rem 2.5rem;
     background: #27ae60;
@@ -346,6 +376,11 @@
 .checkout__place-order-btn:disabled {
     opacity: 0.5;
     cursor: not-allowed;
+}
+
+.checkout__place-order-btn:focus {
+    outline: 2px solid #4a90e2;
+    outline-offset: 2px;
 }
 
 /* Confirmation */
@@ -427,6 +462,11 @@
 
 .checkout__continue-btn:hover {
     background: #1a1a1a;
+}
+
+.checkout__continue-btn:focus {
+    outline: 2px solid #4a90e2;
+    outline-offset: 2px;
 }
 
 /* Sidebar */

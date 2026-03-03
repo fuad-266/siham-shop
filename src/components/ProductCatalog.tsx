@@ -90,7 +90,7 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
   return (
     <div className="product-catalog">
       {/* Product Count */}
-      <div className="product-catalog__count" aria-live="polite">
+      <div className="product-catalog__count" aria-live="polite" aria-atomic="true" role="status">
         {products.length} {products.length === 1 ? 'product' : 'products'} found
       </div>
 
@@ -131,6 +131,13 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
             <button
               className="product-catalog__reset-btn"
               onClick={onClearFilters}
+              aria-label="Clear all filters"
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  onClearFilters();
+                }
+              }}
             >
               Clear All Filters
             </button>

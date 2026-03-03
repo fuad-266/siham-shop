@@ -57,6 +57,11 @@
   color: #333;
 }
 
+.search-bar__clear:focus {
+  outline: 2px solid #4a90e2;
+  outline-offset: 2px;
+}
+
 /* Tablet Styles (768px - 1023px) */
 @media (min-width: 768px) and (max-width: 1023px) {
   .search-bar {

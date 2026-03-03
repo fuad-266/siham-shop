@@ -66,6 +66,11 @@
   border-color: #333;
 }
 
+.home-page__cart-btn:focus {
+  outline: 2px solid #4a90e2;
+  outline-offset: 2px;
+}
+
 .home-page__cart-badge {
   position: absolute;
   top: -4px;

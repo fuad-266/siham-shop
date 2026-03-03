@@ -7,6 +7,37 @@
 
 import { Product } from '../types/models';
 
+// Helper function to generate placeholder images using placehold.co with fallback
+const generatePlaceholderImages = (color: string, name: string): string[] => {
+  const colorMap: Record<string, string> = {
+    'Black': '1a1a1a',
+    'Navy': '1e3a8a',
+    'Burgundy': '7f1d1d',
+    'Olive': '6b7280',
+    'Grey': '4b5563',
+    'Blue': '1e40af',
+    'Green': '047857',
+    'Champagne': 'd4af37',
+    'Purple': '6b21a8',
+    'Maroon': '7f1d1d',
+    'Brown': '78350f',
+    'Beige': 'd4a574',
+    'White': 'f3f4f6',
+    'Taupe': '9ca3af',
+    'Rose': 'f472b6',
+    'Teal': '0d9488'
+  };
+  
+  const colorCode = colorMap[color] || '1a1a1a';
+  
+  // Use local SVG placeholder for now - you can replace with real images later
+  return [
+    '/placeholder.svg',
+    '/placeholder.svg',
+    '/placeholder.svg'
+  ];
+};
+
 export const products: Product[] = [
   // Casual Abayas
   {
@@ -15,11 +46,7 @@ export const products: Product[] = [
     description: 'A timeless black abaya perfect for daily wear. Features a comfortable loose fit with elegant draping and subtle detailing at the cuffs.',
     price: 1200,
     currency: 'ETB',
-    images: [
-      'https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=800',
-      'https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=800&crop=top',
-      'https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=800&crop=bottom'
-    ],
+    images: generatePlaceholderImages('Black', 'Classic Black Abaya'),
     sizes: ['S', 'M', 'L', 'XL'],
     colors: ['Black'],
     category: 'casual',
@@ -34,11 +61,7 @@ export const products: Product[] = [
     description: 'Comfortable navy blue abaya with a modern cut. Perfect for everyday activities with its breathable fabric and practical design.',
     price: 1150,
     currency: 'ETB',
-    images: [
-      'https://images.unsplash.com/photo-1609709295948-17d77cb2a69b?w=800',
-      'https://images.unsplash.com/photo-1609709295948-17d77cb2a69b?w=800&crop=top',
-      'https://images.unsplash.com/photo-1609709295948-17d77cb2a69b?w=800&crop=bottom'
-    ],
+    images: generatePlaceholderImages('Navy', 'Navy Blue Abaya'),
     sizes: ['S', 'M', 'L', 'XL', 'XXL'],
     colors: ['Navy', 'Dark Blue'],
     category: 'casual',
@@ -53,11 +76,7 @@ export const products: Product[] = [
     description: 'Rich burgundy colored abaya with a relaxed fit. Features side pockets and a matching belt for added style and convenience.',
     price: 1300,
     currency: 'ETB',
-    images: [
-      'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800',
-      'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800&crop=top',
-      'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800&crop=bottom'
-    ],
+    images: generatePlaceholderImages('Burgundy', 'Burgundy Abaya'),
     sizes: ['M', 'L', 'XL'],
     colors: ['Burgundy', 'Wine Red'],
     category: 'casual',
@@ -72,11 +91,7 @@ export const products: Product[] = [
     description: 'Modern olive green abaya with a contemporary silhouette. Lightweight and comfortable for all-day wear.',
     price: 1250,
     currency: 'ETB',
-    images: [
-      'https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=800',
-      'https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=800&crop=top',
-      'https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=800&crop=bottom'
-    ],
+    images: generatePlaceholderImages('Olive', 'Olive Green Abaya'),
     sizes: ['S', 'M', 'L', 'XL'],
     colors: ['Olive Green', 'Sage'],
     category: 'casual',
@@ -91,11 +106,7 @@ export const products: Product[] = [
     description: 'Versatile charcoal grey abaya with minimalist design. Perfect for work or casual outings.',
     price: 1180,
     currency: 'ETB',
-    images: [
-      'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800',
-      'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&crop=top',
-      'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&crop=bottom'
-    ],
+    images: generatePlaceholderImages('Grey', 'Charcoal Grey Abaya'),
     sizes: ['S', 'M', 'L', 'XL', 'XXL'],
     colors: ['Charcoal', 'Grey'],
     category: 'casual',
@@ -112,11 +123,7 @@ export const products: Product[] = [
     description: 'Sophisticated black formal abaya with delicate lace trim along the front opening. Perfect for special occasions and formal events.',
     price: 2500,
     currency: 'ETB',
-    images: [
-      'https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=800',
-      'https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=800&crop=top',
-      'https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=800&crop=bottom'
-    ],
+    images: generatePlaceholderImages('Black', 'Elegant Black Formal'),
     sizes: ['S', 'M', 'L', 'XL'],
     colors: ['Black'],
     category: 'formal',
@@ -131,11 +138,7 @@ export const products: Product[] = [
     description: 'Stunning royal blue abaya with pearl embellishments on the sleeves. Makes a statement at weddings and celebrations.',
     price: 2800,
     currency: 'ETB',
-    images: [
-      'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800',
-      'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800&crop=top',
-      'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800&crop=bottom'
-    ],
+    images: generatePlaceholderImages('Blue', 'Royal Blue Formal'),
     sizes: ['M', 'L', 'XL'],
     colors: ['Royal Blue', 'Sapphire'],
     category: 'formal',
@@ -150,11 +153,7 @@ export const products: Product[] = [
     description: 'Luxurious emerald green abaya with gold thread detailing. Elegant and eye-catching for formal gatherings.',
     price: 3200,
     currency: 'ETB',
-    images: [
-      'https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=800',
-      'https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=800&crop=top',
-      'https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=800&crop=bottom'
-    ],
+    images: generatePlaceholderImages('Green', 'Emerald Green Formal'),
     sizes: ['S', 'M', 'L', 'XL'],
     colors: ['Emerald', 'Forest Green'],
     category: 'formal',
@@ -169,11 +168,7 @@ export const products: Product[] = [
     description: 'Elegant champagne colored abaya with sequin detailing. Perfect for evening events and celebrations.',
     price: 2900,
     currency: 'ETB',
-    images: [
-      'https://images.unsplash.com/photo-1467043237213-65f2da53396f?w=800',
-      'https://images.unsplash.com/photo-1467043237213-65f2da53396f?w=800&crop=top',
-      'https://images.unsplash.com/photo-1467043237213-65f2da53396f?w=800&crop=bottom'
-    ],
+    images: generatePlaceholderImages('Champagne', 'Champagne Formal'),
     sizes: ['S', 'M', 'L', 'XL'],
     colors: ['Champagne', 'Gold'],
     category: 'formal',
@@ -188,11 +183,7 @@ export const products: Product[] = [
     description: 'Rich plum purple abaya with crystal embellishments. Sophisticated design for special occasions.',
     price: 3000,
     currency: 'ETB',
-    images: [
-      'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800',
-      'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800&crop=top',
-      'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800&crop=bottom'
-    ],
+    images: generatePlaceholderImages('Purple', 'Plum Purple Formal'),
     sizes: ['M', 'L', 'XL', 'XXL'],
     colors: ['Plum', 'Purple'],
     category: 'formal',
@@ -209,11 +200,7 @@ export const products: Product[] = [
     description: 'Beautiful black abaya featuring intricate floral embroidery along the front and sleeves. A perfect blend of tradition and elegance.',
     price: 2200,
     currency: 'ETB',
-    images: [
-      'https://images.unsplash.com/photo-1558769132-cb1aea1f5e82?w=800',
-      'https://images.unsplash.com/photo-1558769132-cb1aea1f5e82?w=800&crop=top',
-      'https://images.unsplash.com/photo-1558769132-cb1aea1f5e82?w=800&crop=bottom'
-    ],
+    images: generatePlaceholderImages('Black', 'Black Embroidered'),
     sizes: ['S', 'M', 'L', 'XL'],
     colors: ['Black'],
     category: 'embroidered',
@@ -228,11 +215,7 @@ export const products: Product[] = [
     description: 'Navy blue abaya adorned with silver thread embroidery creating geometric patterns. Elegant and versatile.',
     price: 2400,
     currency: 'ETB',
-    images: [
-      'https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=800',
-      'https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=800&crop=top',
-      'https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=800&crop=bottom'
-    ],
+    images: generatePlaceholderImages('Navy', 'Navy Embroidered'),
     sizes: ['S', 'M', 'L', 'XL', 'XXL'],
     colors: ['Navy', 'Midnight Blue'],
     category: 'embroidered',
@@ -247,11 +230,7 @@ export const products: Product[] = [
     description: 'Rich maroon abaya with gold embroidered details on the chest and cuffs. Perfect for festive occasions.',
     price: 2600,
     currency: 'ETB',
-    images: [
-      'https://images.unsplash.com/photo-1544441893-675973e31985?w=800',
-      'https://images.unsplash.com/photo-1544441893-675973e31985?w=800&crop=top',
-      'https://images.unsplash.com/photo-1544441893-675973e31985?w=800&crop=bottom'
-    ],
+    images: generatePlaceholderImages('Maroon', 'Maroon Embroidered'),
     sizes: ['M', 'L', 'XL'],
     colors: ['Maroon', 'Burgundy'],
     category: 'embroidered',
@@ -266,11 +245,7 @@ export const products: Product[] = [
     description: 'Sophisticated grey abaya with delicate pearl and bead embroidery. Subtle elegance for any occasion.',
     price: 2350,
     currency: 'ETB',
-    images: [
-      'https://images.unsplash.com/photo-1509631179647-0177331693ae?w=800',
-      'https://images.unsplash.com/photo-1509631179647-0177331693ae?w=800&crop=top',
-      'https://images.unsplash.com/photo-1509631179647-0177331693ae?w=800&crop=bottom'
-    ],
+    images: generatePlaceholderImages('Grey', 'Grey Embroidered'),
     sizes: ['S', 'M', 'L', 'XL'],
     colors: ['Grey', 'Silver Grey'],
     category: 'embroidered',
@@ -285,11 +260,7 @@ export const products: Product[] = [
     description: 'Warm brown abaya featuring beige embroidered patterns. Comfortable and stylish for everyday elegance.',
     price: 2100,
     currency: 'ETB',
-    images: [
-      'https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?w=800',
-      'https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?w=800&crop=top',
-      'https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?w=800&crop=bottom'
-    ],
+    images: generatePlaceholderImages('Brown', 'Brown Embroidered'),
     sizes: ['S', 'M', 'L', 'XL', 'XXL'],
     colors: ['Brown', 'Chocolate'],
     category: 'embroidered',
@@ -306,11 +277,7 @@ export const products: Product[] = [
     description: 'Minimalist black abaya with clean lines and no embellishments. Perfect for those who prefer understated elegance.',
     price: 950,
     currency: 'ETB',
-    images: [
-      'https://images.unsplash.com/photo-1617019114583-affb34d1b3cd?w=800',
-      'https://images.unsplash.com/photo-1617019114583-affb34d1b3cd?w=800&crop=top',
-      'https://images.unsplash.com/photo-1617019114583-affb34d1b3cd?w=800&crop=bottom'
-    ],
+    images: generatePlaceholderImages('Black', 'Simple Black Plain'),
     sizes: ['S', 'M', 'L', 'XL', 'XXL'],
     colors: ['Black'],
     category: 'plain',
@@ -325,11 +292,7 @@ export const products: Product[] = [
     description: 'Soft beige plain abaya with a comfortable fit. Versatile and easy to style for any occasion.',
     price: 980,
     currency: 'ETB',
-    images: [
-      'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800',
-      'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800&crop=top',
-      'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800&crop=bottom'
-    ],
+    images: generatePlaceholderImages('Beige', 'Beige Plain'),
     sizes: ['S', 'M', 'L', 'XL'],
     colors: ['Beige', 'Cream'],
     category: 'plain',
@@ -344,11 +307,7 @@ export const products: Product[] = [
     description: 'Pure white plain abaya with a flowing silhouette. Simple and elegant for everyday wear.',
     price: 1050,
     currency: 'ETB',
-    images: [
-      'https://images.unsplash.com/photo-1564584217132-2271feaeb3c5?w=800',
-      'https://images.unsplash.com/photo-1564584217132-2271feaeb3c5?w=800&crop=top',
-      'https://images.unsplash.com/photo-1564584217132-2271feaeb3c5?w=800&crop=bottom'
-    ],
+    images: generatePlaceholderImages('White', 'White Plain'),
     sizes: ['S', 'M', 'L', 'XL', 'XXL'],
     colors: ['White', 'Off-White'],
     category: 'plain',
@@ -363,11 +322,7 @@ export const products: Product[] = [
     description: 'Neutral taupe colored plain abaya. Practical and stylish for daily activities.',
     price: 920,
     currency: 'ETB',
-    images: [
-      'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800',
-      'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800&crop=top',
-      'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800&crop=bottom'
-    ],
+    images: generatePlaceholderImages('Taupe', 'Taupe Plain'),
     sizes: ['M', 'L', 'XL'],
     colors: ['Taupe', 'Tan'],
     category: 'plain',
@@ -382,11 +337,7 @@ export const products: Product[] = [
     description: 'Soft dusty rose plain abaya with a modern cut. Feminine and comfortable for all-day wear.',
     price: 1100,
     currency: 'ETB',
-    images: [
-      'https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=800',
-      'https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=800&crop=top',
-      'https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=800&crop=bottom'
-    ],
+    images: generatePlaceholderImages('Rose', 'Dusty Rose Plain'),
     sizes: ['S', 'M', 'L', 'XL'],
     colors: ['Dusty Rose', 'Blush Pink'],
     category: 'plain',
@@ -403,11 +354,7 @@ export const products: Product[] = [
     description: 'Vibrant teal abaya with a matching belt. Modern design with practical side pockets.',
     price: 1350,
     currency: 'ETB',
-    images: [
-      'https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?w=800',
-      'https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?w=800&crop=top',
-      'https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?w=800&crop=bottom'
-    ],
+    images: generatePlaceholderImages('Teal', 'Teal Casual'),
     sizes: ['S', 'M', 'L', 'XL'],
     colors: ['Teal', 'Turquoise'],
     category: 'casual',
@@ -424,11 +371,7 @@ export const products: Product[] = [
     description: 'Dramatic midnight black abaya with an attached cape overlay. Statement piece for special events.',
     price: 3500,
     currency: 'ETB',
-    images: [
-      'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=800',
-      'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=800&crop=top',
-      'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=800&crop=bottom'
-    ],
+    images: generatePlaceholderImages('Black', 'Midnight Black Cape'),
     sizes: ['M', 'L', 'XL'],
     colors: ['Black'],
     category: 'formal',

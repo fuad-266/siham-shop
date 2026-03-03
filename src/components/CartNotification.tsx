@@ -46,11 +46,11 @@ export const CartNotification: React.FC<CartNotificationProps> = ({
     };
 
     return (
-        <div className="cart-notification" role="alert" aria-live="polite">
-            <span className="cart-notification__icon">✓</span>
+        <div className="cart-notification" role="alert" aria-live="polite" aria-atomic="true">
+            <span className="cart-notification__icon" aria-hidden="true">✓</span>
             <div className="cart-notification__body">
                 <span className="cart-notification__message">{message}</span>
-                <button className="cart-notification__view-cart" onClick={handleViewCart}>
+                <button className="cart-notification__view-cart" onClick={handleViewCart} aria-label="View shopping cart">
                     View Cart →
                 </button>
             </div>

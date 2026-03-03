@@ -57,7 +57,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         <div className="product-card__image-container">
           <LazyImage
             src={product.images[0] || ''}
-            alt={product.name}
+            alt={`${product.name} - ${product.category} abaya, ${formattedPrice}`}
             className="product-card__image"
           />
           {!product.inStock && (
