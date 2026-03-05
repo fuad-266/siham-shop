@@ -13,7 +13,7 @@ import {
 import { ConfigService } from '@nestjs/config';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { PrismaService } from '../../prisma/prisma.service';
-import { v4 as uuidv4 } from 'crypto';
+// UUID generation using crypto (Node.js built-in)
 
 const ALLOWED_MIME_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
 const MAX_PAYMENT_SIZE = 5 * 1024 * 1024;    // 5 MB
