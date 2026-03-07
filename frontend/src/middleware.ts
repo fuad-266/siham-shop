@@ -64,16 +64,10 @@ export async function middleware(request: NextRequest) {
         return NextResponse.redirect(redirectUrl);
     }
 
-    // 3. Protect admin routes
+    // 3. Protect admin routes (auth required; role check done client-side via admin layout)
     if (url.pathname.startsWith('/admin')) {
         if (!user) {
             return NextResponse.redirect(new URL('/auth/login?next=/admin', request.url));
-        }
-
-        // Check role in user metadata (set during registration/seeding)
-        const role = user.user_metadata?.role;
-        if (role !== 'ADMIN') {
-            return NextResponse.redirect(new URL('/', request.url));
         }
     }
 

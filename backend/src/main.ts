@@ -21,12 +21,12 @@ async function bootstrap() {
     app.use(helmet());
 
     // ── CORS ──
-    const frontendUrl = configService.get<string>('FRONTEND_URL', 'http://localhost:3000');
+    const frontendUrl = configService.get<string>('FRONTEND_URL', 'http://localhost:3002');
     app.enableCors({
-        origin: [frontendUrl],
+        origin: [frontendUrl, 'http://localhost:3002', 'http://127.0.0.1:3002'],
         methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
         credentials: true,
-        allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+        allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'X-Supabase-Auth'],
         maxAge: 86400,
     });
 

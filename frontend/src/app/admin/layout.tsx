@@ -2,10 +2,10 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import {
     LayoutDashboard, Package, ShoppingCart, Layers, Users, BarChart3,
-    Menu, X, ChevronLeft, LogOut, Store,
+    Menu, X, ChevronLeft, LogOut, Store, Loader2,
 } from 'lucide-react';
 import { useAuth } from '@/providers/auth-provider';
 import { cn } from '@/lib/utils';
@@ -21,7 +21,22 @@ const adminLinks = [
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
     const [sidebarOpen, setSidebarOpen] = useState(true);
     const pathname = usePathname();
-    const { dbUser, signOut } = useAuth();
+    const router = useRouter();
+    const { dbUser, isLoading, signOut } = useAuth();
+
+    // Client-side admin guard
+    if (isLoading) {
+        return (
+            <div className="min-h-screen flex items-center justify-center bg-gray-50">
+                <Loader2 className="animate-spin text-brand-600" size={32} />
+            </div>
+        );
+    }
+
+    if (!dbUser || dbUser.role !== 'ADMIN') {
+        router.push('/');
+        return null;
+    }
 
     return (
         <div className="min-h-screen bg-gray-50 flex">

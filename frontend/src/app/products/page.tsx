@@ -28,11 +28,11 @@ export default function ProductsPage() {
         setIsLoading(true);
         try {
             const params: Record<string, any> = { page, limit: 12 };
-            if (category) params.categorySlug = category;
+            if (category) params.category = category;
             if (search) params.search = search;
-            if (sort === 'newest') params.sortBy = 'createdAt';
-            else if (sort === 'price-asc') { params.sortBy = 'price'; params.sortOrder = 'asc'; }
-            else if (sort === 'price-desc') { params.sortBy = 'price'; params.sortOrder = 'desc'; }
+            if (sort === 'newest') params.sort = 'newest';
+            else if (sort === 'price-asc') params.sort = 'price_asc';
+            else if (sort === 'price-desc') params.sort = 'price_desc';
 
             const { data } = await productsApi.list(params);
             setProducts(data.data || []);
