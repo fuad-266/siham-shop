@@ -13,6 +13,7 @@ import { OrderStatus } from '@prisma/client';
 const VALID_TRANSITIONS: Record<OrderStatus, OrderStatus[]> = {
     [OrderStatus.PENDING_PAYMENT]: [
         OrderStatus.PAYMENT_SUBMITTED,
+        OrderStatus.PAYMENT_VERIFIED,
         OrderStatus.CANCELLED,
     ],
     [OrderStatus.PAYMENT_SUBMITTED]: [

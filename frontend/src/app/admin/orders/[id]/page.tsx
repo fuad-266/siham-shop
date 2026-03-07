@@ -81,7 +81,7 @@ export default function AdminOrderDetailPage() {
     }
 
     const nextStatus = NEXT_STATUS[order.status];
-    const canVerify = order.status === 'PAYMENT_SUBMITTED';
+    const canVerify = ['PENDING_PAYMENT', 'PAYMENT_SUBMITTED'].includes(order.status);
     const canReject = ['PENDING_PAYMENT', 'PAYMENT_SUBMITTED'].includes(order.status);
 
     return (
