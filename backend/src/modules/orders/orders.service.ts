@@ -253,12 +253,8 @@ export class OrdersService {
         // Validate state machine transition
         validateStatusTransition(order.status, dto.status);
 
-        // Require tracking number for SHIPPED status
-        if (requiresTrackingNumber(dto.status) && !dto.trackingNumber) {
-            throw new BadRequestException(
-                'Tracking number is required when setting status to SHIPPED',
-            );
-        }
+        // Tracking number is now optional for SHIPPED status
+        // Removed strict validation check here
 
         // Handle stock restoration on cancellation
         if (requiresStockRestoration(order.status, dto.status)) {
