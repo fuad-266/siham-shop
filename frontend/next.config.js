@@ -19,6 +19,12 @@ const nextConfig = {
                 hostname: 'via.placeholder.com',
                 port: '',
                 pathname: '/**',
+            },
+            {
+                protocol: 'https',
+                hostname: 'ethiopianlogos.com',
+                port: '',
+                pathname: '/**',
             }
         ],
     },

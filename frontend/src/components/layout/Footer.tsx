@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { Facebook, Instagram, Twitter, Mail, Phone, MapPin } from 'lucide-react';
+import { Instagram, Send, Play, Mail, Phone, MapPin } from 'lucide-react';
 
 export default function Footer() {
     const currentYear = new Date().getFullYear();
@@ -50,14 +50,14 @@ export default function Footer() {
                             Elegance in every fold. We provide premium quality abayas that blend traditional grace with modern sophistication for the contemporary woman.
                         </p>
                         <div className="flex items-center gap-4">
-                            <a href="#" className="p-2 bg-brand-900 rounded-full hover:bg-gold-600 transition-colors">
+                            <a href="https://www.instagram.com/alora._abayas" target="_blank" rel="noopener noreferrer" className="p-2 bg-brand-900 rounded-full hover:bg-gold-600 transition-colors" title="Instagram">
                                 <Instagram size={18} />
                             </a>
-                            <a href="#" className="p-2 bg-brand-900 rounded-full hover:bg-gold-600 transition-colors">
-                                <Facebook size={18} />
+                            <a href="https://t.me/+251949503293" target="_blank" rel="noopener noreferrer" className="p-2 bg-brand-900 rounded-full hover:bg-gold-600 transition-colors" title="Telegram">
+                                <Send size={18} />
                             </a>
-                            <a href="#" className="p-2 bg-brand-900 rounded-full hover:bg-gold-600 transition-colors">
-                                <Twitter size={18} />
+                            <a href="https://www.tiktok.com/@alora_abaya0" target="_blank" rel="noopener noreferrer" className="p-2 bg-brand-900 rounded-full hover:bg-gold-600 transition-colors" title="TikTok">
+                                <Play size={18} />
                             </a>
                         </div>
                     </div>

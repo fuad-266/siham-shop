@@ -223,7 +223,14 @@ export default function CheckoutPage() {
                                                 paymentMethod === 'TELEBIRR' ? 'border-brand-600 bg-brand-50' : 'border-brand-100 hover:border-brand-300'
                                             )}
                                         >
-                                            <Phone className="mx-auto mb-3 text-brand-600" size={32} />
+                                            <div className="relative w-12 h-12 mx-auto mb-3">
+                                                <Image
+                                                    src="https://ethiopianlogos.com/logos/tele_birr/tele_birr.png"
+                                                    alt="Telebirr"
+                                                    fill
+                                                    className="object-contain"
+                                                />
+                                            </div>
                                             <p className="font-semibold text-brand-950">Telebirr</p>
                                             <p className="text-xs text-brand-500 mt-1">Mobile Payment</p>
                                         </button>
@@ -234,7 +241,14 @@ export default function CheckoutPage() {
                                                 paymentMethod === 'BANK_TRANSFER' ? 'border-brand-600 bg-brand-50' : 'border-brand-100 hover:border-brand-300'
                                             )}
                                         >
-                                            <Building className="mx-auto mb-3 text-brand-600" size={32} />
+                                            <div className="relative w-12 h-12 mx-auto mb-3">
+                                                <Image
+                                                    src="https://ethiopianlogos.com/logos/commercial_bank_of_ethiopia/commercial_bank_of_ethiopia.png"
+                                                    alt="CBE"
+                                                    fill
+                                                    className="object-contain"
+                                                />
+                                            </div>
                                             <p className="font-semibold text-brand-950">Bank Transfer</p>
                                             <p className="text-xs text-brand-500 mt-1">Direct Bank</p>
                                         </button>
