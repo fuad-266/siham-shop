@@ -246,14 +246,14 @@ export default function CheckoutPage() {
                                         {paymentMethod === 'TELEBIRR' ? (
                                             <div className="text-sm text-brand-700 space-y-2">
                                                 <p>1. Open your Telebirr app</p>
-                                                <p>2. Send <strong>{formatPrice(totalPrice)}</strong> to: <strong>+251 911 234 567</strong></p>
+                                                <p>2. Send <strong>{formatPrice(totalPrice)}</strong> to: <strong>+251949503293</strong></p>
                                                 <p>3. Take a screenshot of the confirmation</p>
                                                 <p>4. Upload the screenshot below</p>
                                             </div>
                                         ) : (
                                             <div className="text-sm text-brand-700 space-y-2">
                                                 <p>1. Transfer <strong>{formatPrice(totalPrice)}</strong> to:</p>
-                                                <p className="font-mono bg-white p-3 rounded-lg">Commercial Bank of Ethiopia<br />Acc: 1000-XXXX-XXXX-XXXX<br />Name: Alora Abayas PLC</p>
+                                                <p className="font-mono bg-white p-3 rounded-lg">Commercial Bank of Ethiopia<br />Acc: 1000538319857<br />Name: Siham Nursabo</p>
                                                 <p>2. Take a screenshot of the transfer receipt</p>
                                                 <p>3. Upload the screenshot below</p>
                                             </div>

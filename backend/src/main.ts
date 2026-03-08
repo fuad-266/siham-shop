@@ -62,9 +62,9 @@ async function bootstrap() {
 
     // ── Start ──
     const port = configService.get<number>('PORT', 3001);
-    await app.listen(port);
+    await app.listen(port, '0.0.0.0');
     console.log(`🚀 Alora Abayas API running on port ${port}`);
-    console.log(`📖 Swagger docs: http://localhost:${port}/api/docs`);
+    console.log(`📖 Swagger docs: http://172.23.232.228:${port}/api/docs`);
 }
 
 bootstrap();
