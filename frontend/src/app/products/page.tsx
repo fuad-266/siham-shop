@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { SlidersHorizontal, X, Search, ChevronDown } from 'lucide-react';
 import { productsApi, categoriesApi } from '@/lib/api';
@@ -8,7 +8,7 @@ import { Product, Category, PaginatedResponse } from '@/types';
 import ProductCard from '@/components/products/ProductCard';
 import { cn } from '@/lib/utils';
 
-export default function ProductsPage() {
+function ProductsContent() {
     const searchParams = useSearchParams();
     const router = useRouter();
 
@@ -181,5 +181,17 @@ export default function ProductsPage() {
                 )}
             </div>
         </div>
+    );
+}
+
+export default function ProductsPage() {
+    return (
+        <Suspense fallback={
+            <div className="pt-28 pb-20 min-h-screen bg-brand-50/50 flex items-center justify-center">
+                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-brand-600"></div>
+            </div>
+        }>
+            <ProductsContent />
+        </Suspense>
     );
 }

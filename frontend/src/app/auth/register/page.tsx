@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, Suspense } from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
@@ -9,7 +9,7 @@ import { createClient } from '@/lib/supabase/client';
 import toast from 'react-hot-toast';
 import { motion } from 'framer-motion';
 
-export default function RegisterPage() {
+function RegisterContent() {
     const [isLoading, setIsLoading] = useState(false);
     const router = useRouter();
     const searchParams = useSearchParams();
@@ -170,5 +170,17 @@ export default function RegisterPage() {
                 </div>
             </motion.div>
         </div>
+    );
+}
+
+export default function RegisterPage() {
+    return (
+        <Suspense fallback={
+            <div className="min-h-screen pt-32 pb-20 bg-brand-50 flex items-center justify-center">
+                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-brand-600"></div>
+            </div>
+        }>
+            <RegisterContent />
+        </Suspense>
     );
 }
