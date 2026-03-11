@@ -6,6 +6,7 @@ import { CartProvider } from '@/providers/cart-provider';
 import { Toaster } from 'react-hot-toast';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import MobileBottomNav from '@/components/layout/MobileBottomNav';
 
 const inter = Inter({
     subsets: ['latin'],
@@ -37,6 +38,7 @@ export default function RootLayout({
                         <Header />
                         <main className="flex-grow">{children}</main>
                         <Footer />
+                        <MobileBottomNav />
                     </CartProvider>
                 </AuthProvider>
             </body>
