@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, Suspense } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { useForm } from 'react-hook-form';
@@ -15,8 +15,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 type CheckoutStep = 'shipping' | 'payment' | 'review';
 
-export default function CheckoutPage() {
-    const { items, totalPrice, clearCart } = useCart();
+function CheckoutContent() {
+    const { items, totalPrice, clearCart, isInitialized } = useCart();
     const { user, dbUser } = useAuth();
     const router = useRouter();
 
@@ -132,8 +132,13 @@ export default function CheckoutPage() {
         );
     }
 
+    React.useEffect(() => {
+        if (isInitialized && items.length === 0 && !orderId) {
+            router.push('/cart');
+        }
+    }, [items, orderId, router, isInitialized]);
+
     if (items.length === 0 && !orderId) {
-        router.push('/cart');
         return null;
     }
 
@@ -334,5 +339,17 @@ export default function CheckoutPage() {
                 </div>
             </div>
         </div>
+    );
+}
+
+export default function CheckoutPage() {
+    return (
+        <Suspense fallback={
+            <div className="pt-32 pb-20 min-h-screen bg-brand-50/50 flex items-center justify-center">
+                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-brand-600"></div>
+            </div>
+        }>
+            <CheckoutContent />
+        </Suspense>
     );
 }
