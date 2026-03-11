@@ -31,7 +31,7 @@ This guide provides step-by-step instructions for deploying the Alora Abayas pro
 | `SUPABASE_ANON_KEY` | Supabase Public Key | From Supabase Project Settings |
 | `SUPABASE_SERVICE_ROLE_KEY` | Supabase Admin Key | From Supabase Project Settings |
 | `SUPABASE_JWT_SECRET` | JWT Secret | From Supabase Project Settings |
-| `FRONTEND_URL` | URL of the frontend | `https://your-frontend.vercel.app` |
+| `FRONTEND_URL` | URL of the frontend | `https://alora-abaya.vercel.app` |
 | `THROTTLE_TTL` | Rate limit window | `60000` |
 | `THROTTLE_LIMIT` | Rate limit count | `100` |
 
@@ -58,7 +58,7 @@ This guide provides step-by-step instructions for deploying the Alora Abayas pro
 
 | Variable | Description |
 | :--- | :--- |
-| `NEXT_PUBLIC_API_URL` | Your Render Backend URL + `/api` (e.g., `https://api.render.com/api`) |
+| `NEXT_PUBLIC_API_URL` | Your Render Backend URL + `/api` | `https://siham-shop-6.onrender.com/api` |
 | `NEXT_PUBLIC_SUPABASE_URL` | From Supabase Project Settings |
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | From Supabase Project Settings |
 
