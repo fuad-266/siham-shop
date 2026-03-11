@@ -127,7 +127,7 @@ export default function AdminOrderDetailPage() {
                     {order.items.map((item) => (
                         <div key={item.id} className="flex gap-4 py-3 border-b border-gray-50 last:border-0">
                             <div className="relative w-14 h-18 rounded-lg overflow-hidden bg-gray-50 shrink-0">
-                                <Image src={item.product?.images?.[0]?.imageUrl || ''} alt="" fill className="object-cover" sizes="56px" />
+                                <Image src={item.product?.images?.[0]?.imageUrl || 'https://via.placeholder.com/200x260'} alt={item.product?.name || 'Product'} fill className="object-cover" sizes="56px" />
                             </div>
                             <div className="flex-grow">
                                 <p className="text-sm font-medium text-gray-900">{item.product?.name}</p>

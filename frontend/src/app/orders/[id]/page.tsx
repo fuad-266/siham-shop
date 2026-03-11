@@ -110,7 +110,7 @@ export default function OrderDetailPage() {
                         {order.items.map((item) => (
                             <div key={item.id} className="flex gap-4 py-3 border-b border-brand-50 last:border-0">
                                 <div className="relative w-16 h-20 rounded-lg overflow-hidden bg-brand-50 shrink-0">
-                                    <Image src={item.product?.images?.[0]?.imageUrl || ''} alt={item.product?.name || 'Product'} fill className="object-cover" sizes="64px" />
+                                    <Image src={item.product?.images?.[0]?.imageUrl || 'https://via.placeholder.com/200x260'} alt={item.product?.name || 'Product'} fill className="object-cover" sizes="64px" />
                                 </div>
                                 <div className="flex-grow">
                                     <p className="text-sm font-semibold text-brand-900">{item.product?.name || 'Product'}</p>

@@ -88,16 +88,27 @@ function CheckoutContent() {
             };
 
             const { data: order } = await ordersApi.create(orderPayload);
-            setOrderId(order.id);
-            clearCart();
-            setStep('review');
-            toast.success('Order placed successfully!');
+            if (order?.id) {
+                setOrderId(order.id);
+                clearCart();
+                setStep('review');
+                toast.success('Order placed successfully!');
+            } else {
+                throw new Error('Order creation returned no ID');
+            }
         } catch (error: any) {
             const msg = error.response?.data?.message;
             toast.error(Array.isArray(msg) ? msg[0] : msg || 'Failed to place order');
         }
         setIsSubmitting(false);
     };
+
+    // ALWAYS call hooks before early returns
+    React.useEffect(() => {
+        if (isInitialized && items.length === 0 && !orderId) {
+            router.push('/cart');
+        }
+    }, [items, orderId, router, isInitialized]);
 
     // Order confirmation view
     if (step === 'review' && orderId) {
@@ -131,12 +142,6 @@ function CheckoutContent() {
             </div>
         );
     }
-
-    React.useEffect(() => {
-        if (isInitialized && items.length === 0 && !orderId) {
-            router.push('/cart');
-        }
-    }, [items, orderId, router, isInitialized]);
 
     if (items.length === 0 && !orderId) {
         return null;
@@ -317,7 +322,7 @@ function CheckoutContent() {
                                 {items.map((item) => (
                                     <div key={`${item.productId}-${item.size}-${item.color}`} className="flex gap-3">
                                         <div className="relative w-14 h-16 rounded-lg overflow-hidden bg-brand-50 shrink-0">
-                                            <Image src={item.product.images[0]?.imageUrl || ''} alt={item.product.name} fill className="object-cover" sizes="56px" />
+                                            <Image src={item.product?.images?.[0]?.imageUrl || 'https://via.placeholder.com/200x260'} alt={item.product?.name || 'Product'} fill className="object-cover" sizes="56px" />
                                         </div>
                                         <div className="flex-grow min-w-0">
                                             <p className="text-sm font-medium text-brand-900 line-clamp-1">{item.product.name}</p>
