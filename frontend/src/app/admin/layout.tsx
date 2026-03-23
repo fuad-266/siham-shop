@@ -43,12 +43,12 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             {/* Sidebar */}
             <aside
                 className={cn(
-                    'fixed inset-y-0 left-0 z-40 bg-brand-950 text-white flex flex-col transition-all duration-300 shadow-2xl',
-                    sidebarOpen ? 'w-64' : 'w-20'
+                    'fixed inset-y-0 left-0 z-50 bg-brand-950 text-white flex flex-col transition-all duration-300 shadow-2xl',
+                    sidebarOpen ? 'translate-x-0 w-64' : '-translate-x-full w-64 md:translate-x-0 md:w-20'
                 )}
             >
                 {/* Logo */}
-                <div className="flex items-center justify-between h-16 px-4 border-b border-brand-800">
+                <div className={cn("flex items-center h-16 px-4 border-b border-brand-800", sidebarOpen ? "justify-between" : "justify-center")}>
                     {sidebarOpen && (
                         <Link href="/admin" className="font-display text-lg font-semibold tracking-tight">
                             ALORA <span className="text-gold-500">ADMIN</span>
@@ -56,9 +56,15 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                     )}
                     <button
                         onClick={() => setSidebarOpen(!sidebarOpen)}
-                        className="p-2 text-brand-400 hover:text-white rounded-lg transition-colors"
+                        className="p-2 text-brand-400 hover:text-white rounded-lg transition-colors hidden md:block"
                     >
                         {sidebarOpen ? <ChevronLeft size={20} /> : <Menu size={20} />}
+                    </button>
+                    <button
+                        onClick={() => setSidebarOpen(false)}
+                        className="p-2 text-brand-400 hover:text-white rounded-lg transition-colors md:hidden"
+                    >
+                        <X size={20} />
                     </button>
                 </div>
 
@@ -101,16 +107,32 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 </div>
             </aside>
 
+            {/* Mobile Overlay */}
+            {sidebarOpen && (
+                <div 
+                    className="fixed inset-0 bg-black/50 z-40 md:hidden"
+                    onClick={() => setSidebarOpen(false)}
+                />
+            )}
+
             {/* Main Area */}
-            <div className={cn('flex-grow transition-all duration-300', sidebarOpen ? 'ml-64' : 'ml-20')}>
+            <div className={cn('flex-grow transition-all duration-300 min-w-0', sidebarOpen ? 'md:ml-64' : 'md:ml-20')}>
                 {/* Top Bar */}
-                <header className="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-6 sticky top-0 z-30">
-                    <div>
-                        <h2 className="text-sm font-semibold text-gray-900">Welcome, {dbUser?.name || 'Admin'}</h2>
-                        <p className="text-xs text-gray-500">Manage your store from here</p>
+                <header className="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-4 md:px-6 sticky top-0 z-30">
+                    <div className="flex items-center gap-3">
+                        <button
+                            onClick={() => setSidebarOpen(true)}
+                            className="p-2 -ml-2 text-gray-500 hover:text-brand-600 transition-colors md:hidden"
+                        >
+                            <Menu size={24} />
+                        </button>
+                        <div>
+                            <h2 className="text-sm font-semibold text-gray-900">Welcome, {dbUser?.name || 'Admin'}</h2>
+                            <p className="text-xs text-gray-500 hidden sm:block">Manage your store from here</p>
+                        </div>
                     </div>
                     <div className="flex items-center gap-4">
-                        <div className="w-8 h-8 bg-brand-600 text-white rounded-full flex items-center justify-center text-sm font-bold">
+                        <div className="w-8 h-8 shrink-0 bg-brand-600 text-white rounded-full flex items-center justify-center text-sm font-bold">
                             {dbUser?.name?.[0]?.toUpperCase() || 'A'}
                         </div>
                     </div>
